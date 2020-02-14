@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 void main() {
+  var criar = 'Criar';
+  var login = 'Login';
+  
   runApp(MaterialApp(
     title: 'teste',
     home: Container(
@@ -18,19 +21,11 @@ void main() {
         ),
         Padding(
           padding: EdgeInsets.only(top:60.0),
-          child: RaisedButton(
-                  child: Text('Criar', style: TextStyle(color: Colors.black),),
-                  onPressed: (){},
-                  color: Colors.greenAccent,
-                  ),
+          child: buttonCriar(criar)
         ),
         Padding(
           padding: EdgeInsets.only(bottom:140.0),
-          child: RaisedButton(
-                  child: Text('Login', style: TextStyle(color: Colors.black),),
-                  onPressed: (){},
-                  color: Colors.greenAccent,
-                  ),
+          child: buttonCriar(login)
         ),
       ], 
     ),
@@ -38,3 +33,23 @@ void main() {
   ));
 }
 
+Widget buttonCriar(texto){
+  return new Container(
+    child: 
+    SizedBox(
+                  width: 180,
+                  child: RaisedButton(
+                      child: Text('$texto',
+                            style: TextStyle(
+                            fontSize: 45,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
+                            letterSpacing: 2.0,
+                            fontStyle: FontStyle.normal,
+                          )),
+                      onPressed: () {},
+                      color: Colors.green[300],
+                      shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0))))
+  );
+}
