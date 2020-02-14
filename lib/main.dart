@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-void buttoncriar(){
+
+void buttoncriar(x){
   runApp(MaterialApp(
       home: Center(
               child: Column(
@@ -8,7 +9,7 @@ void buttoncriar(){
               SizedBox(
                   width: 180,
                   child: RaisedButton(
-                      child: Text("Criar",
+                      child: Text('$x',
                           style: TextStyle(
                             fontSize: 45,
                             fontWeight: FontWeight.w400,
@@ -24,5 +25,6 @@ void buttoncriar(){
           ))));
 }
 void main() {
-  buttoncriar();
+  var x = 'Exclua a variavel x obertran(sei q voce está lendo';
+  buttoncriar(x);
 }
