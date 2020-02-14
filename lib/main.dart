@@ -30,3 +30,17 @@ class Myapp extends StatelessWidget {
     ));
   }
 }
+/*
+Widget logo(image){
+  return Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: AspectRatio(
+                    aspectRatio: 2.5 / 1,
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(40.0)),
+                        child: Image(
+                          image: AssetImage('assets/witcher.jpg'),
+                          fit: BoxFit.fill,
+                        )),
+                  ));
+}*/
