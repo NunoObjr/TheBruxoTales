@@ -1,5 +1,3 @@
-import 'dart:io' as Io;
-
 import 'package:flutter/material.dart';
 
 void main() => runApp(Myapp());
@@ -10,16 +8,21 @@ class Myapp extends StatelessWidget {
     return (MaterialApp(
       title: 'The Bruxo Tales',
       home: Scaffold(
-        backgroundColor: Colors.grey,
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Image(
-                image: AssetImage('assets/60.jpg'),
-                width: 315,
-                height: 160,
-              ),
+              Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: AspectRatio(
+                    aspectRatio: 2.5 / 1,
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(40.0)),
+                        child: Image(
+                          image: AssetImage('assets/witcher.jpg'),
+                          fit: BoxFit.fill,
+                        )),
+                  )),
             ],
           ),
         ),
@@ -27,3 +30,17 @@ class Myapp extends StatelessWidget {
     ));
   }
 }
+/*
+Widget logo(image){
+  return Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: AspectRatio(
+                    aspectRatio: 2.5 / 1,
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(40.0)),
+                        child: Image(
+                          image: AssetImage('assets/witcher.jpg'),
+                          fit: BoxFit.fill,
+                        )),
+                  ));
+}*/
