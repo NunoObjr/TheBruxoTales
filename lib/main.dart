@@ -28,15 +28,17 @@ Widget buttonCriar(texto) {
 }
 
 Widget input(x) {
-  return (TextField(
+  return (Scaffold(body:TextField(
     obscureText: false, //texto em formato de senha (true para sim)
     decoration: InputDecoration(
       border: OutlineInputBorder(),
       labelText: '$x', /*,labelStyle caso queira editar o labelText?*/
     ),
-  ));
+  )));
 }
 
 void main() {
-  
+  var x = 'ola';
+  runApp(MaterialApp(
+      home: input(x)));
 }
