@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:path_provider/path_provider.dart';
-import 'ui/bd.dart';
+import "./screens/loginPage.dart";
+import "./screens/criarPage.dart";
 
 
-void main() => runApp(new Home());
+void main() => runApp(MaterialApp(
+  title:'Main',
+  home: Home()
+));
 
-Widget buttonCriar(texto){
+Widget buttonCriar(BuildContext context,texto){
   return new Container(
     child: 
     SizedBox(
@@ -21,25 +23,38 @@ Widget buttonCriar(texto){
                             fontStyle: FontStyle.normal,
                           )),
                       onPressed: () {
-                        if(texto == 'Login'){
-                          
+                        if(texto=="Login"){
+                          Navigator.push(
+                            context, 
+                            MaterialPageRoute(
+                              builder: (context) => LoginPage()
+                            )
+                          );
                         }
+                        else
+                          Navigator.push(
+                            context, 
+                            MaterialPageRoute(
+                              builder: (context) => CriarPage()
+                            )
+                          );
+
                       },
                       color: Colors.green[300],
                       shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0))))
   );
 }
-Widget buttonGo(){
-  return new Container(
-    child:
-    RaisedButton(
-      child: Text('GO',
-      ),
-      onPressed: () {},
-    )
-  );
-}
+  Widget buttonGo(){
+    return new Container(
+      child:
+      RaisedButton(
+        child: Text('GO',
+        ),
+        onPressed: () {},
+      )
+    );
+  }
 
   Widget logo() {
     return new Container(
@@ -57,43 +72,6 @@ Widget buttonGo(){
                   )),
       );
   }
-  class LoginPage extends StatelessWidget{
-    @override
-    Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Segunda Rota (tela)"),
-      ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: () { 
-            Navigator.pop(context);
-          },
-          child: Text('Retornar !'),
-        ),
-      ),
-    );
-  }
-  }
-
-  class CriarPage extends StatelessWidget{
-    @override
-    Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Segunda Rota (tela)"),
-      ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: () { 
-            Navigator.pop(context);
-          },
-          child: Text('Retornar !'),
-        ),
-      ),
-    );
-  }
-  }
 
   class Home extends StatelessWidget{
     @override
@@ -110,11 +88,11 @@ Widget buttonGo(){
         ),
         Padding(
           padding: EdgeInsets.only(top:60.0),
-          child: buttonCriar('Criar')
+          child: buttonCriar(context,'Criar')
         ),
         Padding(
           padding: EdgeInsets.only(bottom:140.0),
-          child: buttonCriar('Login')
+          child: buttonCriar(context,'Login')
         ),
       ], 
     ),
@@ -124,3 +102,12 @@ Widget buttonGo(){
   }
 
   
+Widget input(x) {
+  return (Scaffold(body:TextField(
+    obscureText: false, //texto em formato de senha (true para sim)
+    decoration: InputDecoration(
+      border: OutlineInputBorder(),
+      labelText: '$x', /*,labelStyle caso queira editar o labelText?*/
+    ),
+  )));
+}
