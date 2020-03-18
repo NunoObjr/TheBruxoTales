@@ -6,7 +6,8 @@ class CriarPage extends StatelessWidget{
     return(
       Container(
       color: Colors.grey,
-      child:Column(
+      child:
+      Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Padding(
@@ -47,7 +48,7 @@ class CriarPage extends StatelessWidget{
             ),
             Padding(
             padding: EdgeInsets.only(bottom:40.0),
-            child: buttonCriar(context, "GO")
+            child: buttonGo(context)
             ),
             Padding(
               padding: EdgeInsets.only(bottom:30.0),
@@ -78,22 +79,64 @@ class CriarPage extends StatelessWidget{
       );
   }
 
-  Widget buttonGo(){
+  Widget buttonGo(context){
     return new Container(
-      child:
-      SizedBox(
-        child:
-        RaisedButton(
-        child: Text('GO',
-        ),
-        onPressed: () {},
+    decoration: new BoxDecoration(
+      boxShadow:[
+        BoxShadow(
+          color: Colors.black,
+          blurRadius:5.0, //clarea
+          spreadRadius: 0.0,//expande
+          offset: Offset(
+            0.0, //horizontal
+            6.0, //vertical
+          ),
         )
+      ],
+      borderRadius: new BorderRadius.circular(50.0),
+    ),
+    child: 
+    SizedBox(
+                  width: 100,
+                  height: 90,
+                  child: RaisedButton(
+                      child: Text('GO',
+                            style: TextStyle(
+                            fontSize: 45,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                            letterSpacing: 2.0,
+                            fontStyle: FontStyle.normal,
+                          )),
+                      onPressed: () {
+                        Navigator.pop(context);
+
+                      },
+                      color: Color.fromARGB(255,110,159,106),
+                      shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(60.0)
+                      )
+                      )
       )
-    );
+  );
   }
 
   Widget buttonCriar(BuildContext context,texto){
   return new Container(
+    decoration: new BoxDecoration(
+      boxShadow:[
+        BoxShadow(
+          color: Colors.black,
+          blurRadius:5.0, //clarea
+          spreadRadius: 0.0,//expande
+          offset: Offset(
+            0.0, //horizontal
+            6.0, //vertical
+          ),
+        )
+      ],
+      borderRadius: new BorderRadius.circular(50.0),
+    ),
     child: 
     SizedBox(
                   width: 180,
@@ -110,7 +153,7 @@ class CriarPage extends StatelessWidget{
                         Navigator.pop(context);
 
                       },
-                      color: Colors.green[300],
+                      color: Color.fromARGB(255,110,159,106),
                       shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0))))
   );
@@ -124,11 +167,9 @@ Widget input(nome) {
           onChanged: (text) {
             print('letra $text');
           },
-        
           obscureText: false, //texto em formato de senha (true para sim)
-          decoration: InputDecoration(border: OutlineInputBorder(
-            borderSide:BorderSide(color:Colors.purple,width:50)) ,
-
+          decoration: InputDecoration(
+            border: OutlineInputBorder(),
             labelStyle: TextStyle(color: Colors.red), //cor do label
             labelText: '$nome', /*,labelStyle caso queira editar o labelText?*/
           ),

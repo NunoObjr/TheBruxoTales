@@ -10,6 +10,20 @@ void main() => runApp(MaterialApp(
 
 Widget buttonCriar(BuildContext context,texto){
   return new Container(
+    decoration: new BoxDecoration(
+      boxShadow:[
+        BoxShadow(
+          color: Colors.black,
+          blurRadius:5.0, //clarea
+          spreadRadius: 0.0,//expande
+          offset: Offset(
+            0.0, //horizontal
+            6.0, //vertical
+          ),
+        )
+      ],
+      borderRadius: new BorderRadius.circular(50.0),
+    ),
     child: 
     SizedBox(
                   width: 180,
@@ -40,7 +54,7 @@ Widget buttonCriar(BuildContext context,texto){
                           );
 
                       },
-                      color: Colors.green[300],
+                      color: Color.fromARGB(255,110,159,106),
                       shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0))))
   );
