@@ -14,15 +14,25 @@ class LoginPage extends StatelessWidget{
           child: logo(),
         ),
         Padding(
-          padding: EdgeInsets.zero,
-          child: Text("Username")
+          padding: EdgeInsets.only(left:80.0, right: 80.0),
+          child: AspectRatio(
+            aspectRatio: 5,
+            child:input("Username")
+          )
         ),
         Padding(
-          padding: EdgeInsets.zero,
-          child: Text("Password")
+          padding: EdgeInsets.only(left:80.0, right: 80.0),
+          child: AspectRatio(
+            aspectRatio: 5,
+            child:input("Password")
+          )
         ),
         Padding(
-          padding: EdgeInsets.zero,
+          padding: EdgeInsets.only(bottom:40.0),
+          child: buttonCriar(context, "GO")
+        ),
+        Padding(
+          padding: EdgeInsets.only(bottom:40.0),
           child: buttonCriar(context, "Voltar")
         ),
       ], 
@@ -83,4 +93,21 @@ class LoginPage extends StatelessWidget{
                       shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0))))
   );
+}
+
+Widget input(nome) {
+  return (
+    Scaffold(
+      body: TextField(
+          textAlign: TextAlign.center,
+          onChanged: (text) {
+            print('letra $text');
+          },
+          obscureText: false, //texto em formato de senha (true para sim)
+          decoration: InputDecoration(
+            border: OutlineInputBorder(),
+            labelStyle: TextStyle(color: Colors.red), //cor do label
+            labelText: '$nome', /*,labelStyle caso queira editar o labelText?*/
+          ),
+          style: TextStyle(color: Colors.purple, fontSize: 30))));
 }
