@@ -124,9 +124,11 @@ Widget input(nome) {
           onChanged: (text) {
             print('letra $text');
           },
+        
           obscureText: false, //texto em formato de senha (true para sim)
-          decoration: InputDecoration(
-            border: OutlineInputBorder(),
+          decoration: InputDecoration(border: OutlineInputBorder(
+            borderSide:BorderSide(color:Colors.purple,width:50)) ,
+
             labelStyle: TextStyle(color: Colors.red), //cor do label
             labelText: '$nome', /*,labelStyle caso queira editar o labelText?*/
           ),
