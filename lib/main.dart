@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
   }
 
   Widget build(BuildContext context) {
-    var nome = 'obertran';
+    var nome;
     return input(nome);
   }
 
