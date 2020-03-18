@@ -24,7 +24,7 @@ class LoginPage extends StatelessWidget{
           padding: EdgeInsets.only(left:80.0, right: 80.0),
           child: AspectRatio(
             aspectRatio: 5,
-            child:input("Password")
+            child:input("Senha")
           )
         ),
         Padding(
