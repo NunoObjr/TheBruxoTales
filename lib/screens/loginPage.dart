@@ -3,34 +3,33 @@ import 'package:flutter/material.dart';
 class LoginPage extends StatelessWidget{
     @override
     Widget build(BuildContext context) {
-    return 
-      Scaffold(
-        backgroundColor: Colors.grey,
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              logo(),
-              Padding(
-                padding: EdgeInsets.only(top:280.0),
-                child: Text("Username")
-              ),
-              Padding(
-                padding: EdgeInsets.only(bottom:80.0),
-                child: Text("Password")
-              ),
-              Padding(
-                padding: EdgeInsets.only(bottom:60.0),
-                child: Text("GO")
-              ),
-              Padding(
-                padding: EdgeInsets.only(bottom:20),
-                child: buttonCriar(context, "Voltar")
-              ),
-            ]
-          ),
+    return(
+      Container(
+      color: Colors.grey,
+      child:Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.only(top:20.0),
+          child: logo(),
         ),
-     );
+        Padding(
+          padding: EdgeInsets.zero,
+          child: Text("Username")
+        ),
+        Padding(
+          padding: EdgeInsets.zero,
+          child: Text("Password")
+        ),
+        Padding(
+          padding: EdgeInsets.zero,
+          child: buttonCriar(context, "Voltar")
+        ),
+      ], 
+      ),
+      )
+    );
+      
   }
   }
 
