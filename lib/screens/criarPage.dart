@@ -16,7 +16,7 @@ class CriarPage extends StatelessWidget{
         Padding(
               padding: EdgeInsets.only(left:80.0, right: 80.0, top: 10.0),
               child: SizedBox(
-                width:200,
+                width:240,
                 height:30,
                 child:input("Email")
               )
@@ -24,7 +24,7 @@ class CriarPage extends StatelessWidget{
             Padding(
               padding: EdgeInsets.only(left:80.0, right: 80.0),
               child: SizedBox(
-                width:200,
+                width:240,
                 height:30,
                 child:input("Username")
               )
@@ -32,7 +32,7 @@ class CriarPage extends StatelessWidget{
             Padding(
               padding: EdgeInsets.only(left:80.0, right: 80.0),
               child: SizedBox(
-                width:200,
+                width:240,
                 height:30,
                 child:input("Senha")
               )
@@ -40,7 +40,7 @@ class CriarPage extends StatelessWidget{
             Padding(
               padding: EdgeInsets.only(left:80.0, right: 80.0),
               child: SizedBox(
-                width:200,
+                width:240,
                 height:30,
                 child:input("Confirmar Senha")
               )
@@ -81,10 +81,13 @@ class CriarPage extends StatelessWidget{
   Widget buttonGo(){
     return new Container(
       child:
-      RaisedButton(
+      SizedBox(
+        child:
+        RaisedButton(
         child: Text('GO',
         ),
         onPressed: () {},
+        )
       )
     );
   }
