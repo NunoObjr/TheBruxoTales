@@ -45,16 +45,7 @@ Widget buttonCriar(BuildContext context,texto){
                       borderRadius: BorderRadius.circular(15.0))))
   );
 }
-  Widget buttonGo(){
-    return new Container(
-      child:
-      RaisedButton(
-        child: Text('GO',
-        ),
-        onPressed: () {},
-      )
-    );
-  }
+  
 
   Widget logo() {
     return new Container(
