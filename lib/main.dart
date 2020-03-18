@@ -29,6 +29,9 @@ Widget buttonCriar(texto) {
 
 Widget input(x) {
   return (Scaffold(body:TextField(
+    textAlign: TextAlign.center,
+    onChanged: (text){
+      print('letra $text');},
     obscureText: false, //texto em formato de senha (true para sim)
     decoration: InputDecoration(
       border: OutlineInputBorder(),
@@ -38,7 +41,7 @@ Widget input(x) {
 }
 
 void main() {
-  var x = 'ola';
+  var x = 'olaa';
   runApp(MaterialApp(
       home: input(x)));
 }
