@@ -28,20 +28,23 @@ Widget buttonCriar(texto) {
 }
 
 Widget input(x) {
-  return (Scaffold(body:TextField(
-    textAlign: TextAlign.center,
-    onChanged: (text){
-      print('letra $text');},
-    obscureText: false, //texto em formato de senha (true para sim)
-    decoration: InputDecoration(
-      border: OutlineInputBorder(),
-      labelText: '$x', /*,labelStyle caso queira editar o labelText?*/
-    ),
-  )));
+  return (Scaffold(
+      body: TextField(
+          textAlign: TextAlign.center,
+          //keyboardType: TextInputType. para tipos permitidos de entrada
+          onChanged: (text) {
+            print('letra $text');
+          },
+          obscureText: false, //texto em formato de senha (true para sim)
+          decoration: InputDecoration(
+            border: OutlineInputBorder(),
+            labelStyle: TextStyle(color: Colors.red), //cor do label
+            labelText: '$x', /*,labelStyle caso queira editar o labelText?*/
+          ),
+          style: TextStyle(color: Colors.purple, fontSize: 30))));
 }
 
 void main() {
-  var x = 'olaa';
-  runApp(MaterialApp(
-      home: input(x)));
+  var x = 'Username';
+  runApp(MaterialApp(home: input(x)));
 }
