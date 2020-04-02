@@ -1,36 +1,72 @@
 import 'package:flutter/material.dart';
+import "./screens/loginPage.dart";
+import "./screens/criarPage.dart";
 
-void main() {
-  var criar = 'Criar';
-  var login = 'Login';
-  
-  runApp(MaterialApp(
-    title: 'teste',
-    home: Container(
+
+void main() => runApp(MaterialApp(
+  title:'Main',
+  home: Home()
+));
+
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+  class _HomeState extends State<Home>{
+
+  TextEditingController textController = TextEditingController();
+
+    @override
+    void initState() {
+    super.initState();
+    // Start listening to changes.
+    textController.addListener(printLatestValue);
+    }
+
+    printLatestValue() {
+      print("Second text field: ${textController.text}");
+    }
+    Widget build(BuildContext context) {
+    return (
+      Container(
       color: Colors.grey,
       child:Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Padding(
           padding: EdgeInsets.only(top:20.0),
-          child: build(),
+          child: logo(),
         ),
         Padding(
           padding: EdgeInsets.only(top:60.0),
-          child: buttonCriar(criar)
+          child: buttonCriar(context,'Criar')
         ),
         Padding(
           padding: EdgeInsets.only(bottom:140.0),
-          child: buttonCriar(login)
+          child: buttonCriar(context,'Login')
         ),
       ], 
     ),
     )
-  ));
-}
-
-Widget buttonCriar(texto){
+    );
+  }
+  Widget buttonCriar(BuildContext context,texto){
   return new Container(
+    decoration: new BoxDecoration(
+      boxShadow:[
+        BoxShadow(
+          color: Colors.black,
+          blurRadius:5.0, //clarea
+          spreadRadius: 0.0,//expande
+          offset: Offset(
+            0.0, //horizontal
+            6.0, //vertical
+          ),
+        )
+      ],
+      borderRadius: new BorderRadius.circular(50.0),
+    ),
     child: 
     SizedBox(
                   width: 180,
@@ -43,24 +79,32 @@ Widget buttonCriar(texto){
                             letterSpacing: 2.0,
                             fontStyle: FontStyle.normal,
                           )),
-                      onPressed: () {},
-                      color: Colors.green[300],
+                      onPressed: () {
+                        if(texto=="Login"){
+                          Navigator.push(
+                            context, 
+                            MaterialPageRoute(
+                              builder: (context) => LoginPage()
+                            )
+                          );
+                        }
+                        else
+                          Navigator.push(
+                            context, 
+                            MaterialPageRoute(
+                              builder: (context) => CriarPage()
+                            )
+                          );
+
+                      },
+                      color: Color.fromARGB(255,110,159,106),
                       shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0))))
   );
 }
-Widget buttonGo(){
-  return new Container(
-    child:
-    RaisedButton(
-      child: Text('GO',
-      ),
-      onPressed: () {},
-    )
-  );
-}
+  
 
-  Widget build() {
+  Widget logo() {
     return new Container(
           child: 
               Padding(
@@ -75,4 +119,20 @@ Widget buttonGo(){
                         )),
                   )),
       );
+  }
+  Widget input(String nome) {
+    return TextFormField(
+      controller: textController,
+      textAlign: TextAlign.center,
+      //keyboardType: TextInputType. para tipos permitidos de entrada
+      obscureText: false, //texto em formato de senha (true para sim)
+      decoration: InputDecoration(
+        filled: true,
+        labelStyle: TextStyle(color: Colors.red), //cor do label
+        labelText: '$nome', /*,labelStyle caso queira editar o labelText?*/
+      ),
+      style: TextStyle(
+          color: Colors.purple, fontSize: 30, backgroundColor: Colors.red),
+    );
+  }
   }
