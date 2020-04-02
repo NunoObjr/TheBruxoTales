@@ -28,7 +28,7 @@ class LoginPage extends StatelessWidget{
           )
         ),
         Padding(
-          padding: EdgeInsets.only(bottom:40.0),
+          padding: EdgeInsets.only(bottom:45.0),
           child: buttonGo(context)
         ),
         Padding(
@@ -60,7 +60,7 @@ class LoginPage extends StatelessWidget{
       );
   }
 
- Widget buttonGo(context){
+  Widget buttonGo(context){
     return new Container(
     decoration: new BoxDecoration(
       boxShadow:[
