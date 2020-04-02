@@ -23,8 +23,24 @@ class _HomeState extends State<Home> {
   }
 
   Widget build(BuildContext context) {
-    var nome;
-    return input(nome);
+    return Container(
+      color: Colors.grey,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(top: 20.0),
+            child: logo(),
+          ),
+          Padding(
+              padding: EdgeInsets.only(top: 60.0),
+              child: buttonCriar(context, 'Criar')),
+          Padding(
+              padding: EdgeInsets.only(bottom: 140.0),
+              child: buttonCriar(context, 'Login')),
+        ],
+      ),
+    );
   }
 
   Widget buttonCriar(BuildContext context, texto) {
@@ -48,7 +64,7 @@ class _HomeState extends State<Home> {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => CriarPage()));
                 },
-                color: Colors.green[300],
+                color: Color.fromARGB(255, 110, 159, 106),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0)))));
   }
@@ -69,20 +85,19 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget input(nome) {
-    return (Form(
-        child: Scaffold(
-            body: TextFormField(
+  Widget input(String nome) {
+    return TextFormField(
       controller: textController,
       textAlign: TextAlign.center,
       //keyboardType: TextInputType. para tipos permitidos de entrada
       obscureText: false, //texto em formato de senha (true para sim)
       decoration: InputDecoration(
-        border: OutlineInputBorder(),
+        filled: true,
         labelStyle: TextStyle(color: Colors.red), //cor do label
         labelText: '$nome', /*,labelStyle caso queira editar o labelText?*/
       ),
-      style: TextStyle(color: Colors.purple, fontSize: 30),
-    ))));
+      style: TextStyle(
+          color: Colors.purple, fontSize: 30, backgroundColor: Colors.red),
+    );
   }
 }
