@@ -12,15 +12,9 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   TextEditingController textController = TextEditingController();
   @override
-  void initState() {
-    super.initState();
-    // Start listening to changes.
-    textController.addListener(printLatestValue);
-  }
+  
 
-  printLatestValue() {
-    print("Second text field: ${textController.text}");
-  }
+  
 
   Widget build(BuildContext context) {
     return Container(
@@ -85,19 +79,32 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget input(String nome) {
+  Widget input(String nome, var controlador) {
     return TextFormField(
-      controller: textController,
-      textAlign: TextAlign.center,
-      //keyboardType: TextInputType. para tipos permitidos de entrada
-      obscureText: false, //texto em formato de senha (true para sim)
-      decoration: InputDecoration(
-        filled: true,
-        labelStyle: TextStyle(color: Colors.red), //cor do label
-        labelText: '$nome', /*,labelStyle caso queira editar o labelText?*/
-      ),
+      keyboardType: TextInputType.text,
+      controller: controlador,
+      autofocus: false,
+      textAlign: TextAlign.start,
+      textInputAction: TextInputAction.done,
+      obscureText: false, //texto em formato de senha
       style: TextStyle(
-          color: Colors.purple, fontSize: 30, backgroundColor: Colors.red),
+        fontSize: 20,
+        fontWeight: FontWeight.w500,
+      ),
+      decoration: InputDecoration(
+        contentPadding: EdgeInsets.all(2),
+        labelText: "",
+        labelStyle: TextStyle(
+          color: Colors.pink,
+          fontSize: 18,
+          fontWeight: FontWeight.w500,
+        ),
+        focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.transparent, width: 5)),
+        hintText: '',
+        filled: true,
+        fillColor: Colors.white,
+      ),
     );
-  }
-}
+  }}
+

@@ -114,6 +114,7 @@ class _CriarPageState extends State<CriarPage> {
       style: TextStyle(
         fontSize: 20,
         fontWeight: FontWeight.w500,
+        height:1.4,
       ),
       decoration: InputDecoration(
         contentPadding: EdgeInsets.all(2),
