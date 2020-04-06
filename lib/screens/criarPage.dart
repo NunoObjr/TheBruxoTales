@@ -50,8 +50,14 @@ class _CriarPageState extends State<CriarPage> {
                       height: 30,
                       child: input(
                           "Confirmar Senha", textControllerConfirmarSenha))),
-              buttonCriar(context, "GO"),
-              buttonCriar(context, "Voltar")
+            Padding(
+            padding: EdgeInsets.only(top:40.0),
+            child: buttonGo(context)
+            ),
+            Padding(
+              padding: EdgeInsets.only(top:60.0, bottom:5.0),
+              child: buttonCriar(context, "Voltar")
+            ),
             ])));
   }
 
@@ -71,38 +77,85 @@ class _CriarPageState extends State<CriarPage> {
     );
   }
 
-  Widget buttonGo() {
+  Widget buttonGo(context){
     return new Container(
-        child: SizedBox(
-            child: RaisedButton(
-      child: Text(
-        'GO',
-      ),
-      onPressed: () {},
-    )));
+    decoration: new BoxDecoration(
+      boxShadow:[
+        BoxShadow(
+          color: Colors.black,
+          blurRadius:5.0, //clarea
+          spreadRadius: 0.0,//expande
+          offset: Offset(
+            0.0, //horizontal
+            6.0, //vertical
+          ),
+        )
+      ],
+      borderRadius: new BorderRadius.circular(50.0),
+    ),
+    child: 
+    SizedBox(
+                  width: 100,
+                  height: 90,
+                  child: RaisedButton(
+                      child: Text('GO',
+                            style: TextStyle(
+                            fontSize: 45,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                            letterSpacing: 2.0,
+                            fontStyle: FontStyle.normal,
+                          )),
+                      onPressed: () {
+                        Navigator.pop(context);
+
+                      },
+                      color: Color.fromARGB(255,110,159,106),
+                      shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(60.0)
+                      )
+                      )
+      )
+  );
   }
 
-  Widget buttonCriar(BuildContext context, texto) {
-    return new Container(
-        child: SizedBox(
-            width: 180,
-            child: RaisedButton(
-                child: Text('$texto',
-                    style: TextStyle(
-                      fontSize: 45,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.black,
-                      letterSpacing: 2.0,
-                      fontStyle: FontStyle.normal,
-                    )),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                color: Colors.green[300],
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0)))));
-  }
+  Widget buttonCriar(BuildContext context,texto){
+  return new Container(
+    decoration: new BoxDecoration(
+      boxShadow:[
+        BoxShadow(
+          color: Colors.black,
+          blurRadius:5.0, //clarea
+          spreadRadius: 0.0,//expande
+          offset: Offset(
+            0.0, //horizontal
+            6.0, //vertical
+          ),
+        )
+      ],
+      borderRadius: new BorderRadius.circular(50.0),
+    ),
+    child: 
+    SizedBox(
+                  width: 180,
+                  child: RaisedButton(
+                      child: Text('$texto',
+                            style: TextStyle(
+                            fontSize: 45,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
+                            letterSpacing: 2.0,
+                            fontStyle: FontStyle.normal,
+                          )),
+                      onPressed: () {
+                        Navigator.pop(context);
 
+                      },
+                      color: Color.fromARGB(255,110,159,106),
+                      shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0))))
+  );
+  }
   Widget input(String nome, var controlador) {
     return TextFormField(
       keyboardType: TextInputType.text,
