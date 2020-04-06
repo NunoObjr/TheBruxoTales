@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "243534466488",
+    "firebase_url": "https://thebruxotales.firebaseio.com",
+    "project_id": "thebruxotales",
+    "storage_bucket": "thebruxotales.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:243534466488:android:7801f977d99295896ad34d",
+        "android_client_info": {
+          "package_name": "com.example.thebruxotales"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "243534466488-rfgrpp3jvu4ilbcg2bn8d8ca8momf49s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.thebruxotales",
+            "certificate_hash": "0c603f0dbd9d6f116c43aeb2dbe5496d1bdf2778"
+          }
+        },
+        {
+          "client_id": "243534466488-faiggmd8ckk9h8idn9f41c2d98g82l1t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpkHcKl9-T6kMHskCqMupGIDxGSpxqKRI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "243534466488-faiggmd8ckk9h8idn9f41c2d98g82l1t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import "./screens/loginPage.dart";
 import "./screens/criarPage.dart";
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-
-void main() => runApp(MaterialApp(
-  title:'Main',
-  home: Home()
-));
+void main() {
+      runApp(MaterialApp(title:'Main',home: Home()));
+}
 
 class Home extends StatefulWidget {
   @override
