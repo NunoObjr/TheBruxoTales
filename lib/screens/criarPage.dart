@@ -1,4 +1,4 @@
-/*import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import './mainInterface.dart';
 class CriarPage extends StatefulWidget {
   @override
@@ -62,7 +62,7 @@ class _CriarPageState extends State<CriarPage> {
   }
 
   Widget logo() {
-    return new Container(
+    return Container(
       child: Padding(
           padding: EdgeInsets.all(20.0),
           child: AspectRatio(
@@ -77,9 +77,9 @@ class _CriarPageState extends State<CriarPage> {
     );
   }
 
-  Widget buttonGo(context){
-    return new Container(
-    decoration: new BoxDecoration(
+  Widget buttonGo(BuildContext context){
+    return Container(
+    decoration: BoxDecoration(
       boxShadow:[
         BoxShadow(
           color: Colors.black,
@@ -91,7 +91,7 @@ class _CriarPageState extends State<CriarPage> {
           ),
         )
       ],
-      borderRadius: new BorderRadius.circular(50.0),
+      borderRadius: BorderRadius.circular(50.0),
     ),
     child: 
     SizedBox(
@@ -119,9 +119,9 @@ class _CriarPageState extends State<CriarPage> {
   );
   }
 
-  Widget buttonCriar(BuildContext context,texto){
-  return new Container(
-    decoration: new BoxDecoration(
+  Widget buttonCriar(BuildContext context,dynamic texto){
+  return Container(
+    decoration: BoxDecoration(
       boxShadow:[
         BoxShadow(
           color: Colors.black,
@@ -133,7 +133,7 @@ class _CriarPageState extends State<CriarPage> {
           ),
         )
       ],
-      borderRadius: new BorderRadius.circular(50.0),
+      borderRadius: BorderRadius.circular(50.0),
     ),
     child: 
     SizedBox(
@@ -148,11 +148,7 @@ class _CriarPageState extends State<CriarPage> {
                             fontStyle: FontStyle.normal,
                           )),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context)=> MainIterface())
-
-                        );
+                        Navigator.pop(context);
 
                       },
                       color: Color.fromARGB(255,110,159,106),
@@ -160,7 +156,7 @@ class _CriarPageState extends State<CriarPage> {
                       borderRadius: BorderRadius.circular(15.0))))
   );
   }
-  Widget input(String nome, var controlador) {
+  Widget input(String nome, dynamic controlador) {
     return TextFormField(
       keyboardType: TextInputType.text,
       controller: controlador,
@@ -188,4 +184,4 @@ class _CriarPageState extends State<CriarPage> {
       ),
     );
   }
-}*/
+}

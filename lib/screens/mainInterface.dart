@@ -8,8 +8,8 @@ class MainIterface extends StatefulWidget {
 class _MainIterfaceState extends State<MainIterface> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+    return const Scaffold(
+      body: Text('teste'),
     );
   }
 }

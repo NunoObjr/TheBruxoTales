@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import './screens/criarPage.dart';
+import './screens/loginPage.dart';
 import "./screens/mainInterface.dart";
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -22,7 +24,7 @@ class Home extends StatefulWidget {
     textController.addListener(printLatestValue);
     }
 
-    printLatestValue() {
+    dynamic printLatestValue() {
       print("Second text field: ${textController.text}");
     }
     Widget build(BuildContext context) {
@@ -50,8 +52,8 @@ class Home extends StatefulWidget {
     );
   }
   Widget buttonCriar(BuildContext context,texto){
-  return new Container(
-    decoration: new BoxDecoration(
+  return Container(
+    decoration: BoxDecoration(
       boxShadow:[
         BoxShadow(
           color: Colors.black,
@@ -63,7 +65,7 @@ class Home extends StatefulWidget {
           ),
         )
       ],
-      borderRadius: new BorderRadius.circular(50.0),
+      borderRadius: BorderRadius.circular(50.0),
     ),
     child: 
     SizedBox(

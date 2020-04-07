@@ -1,5 +1,5 @@
-/*import 'package:flutter/material.dart';
-
+import 'package:flutter/material.dart';
+import './mainInterface.dart';
 class LoginPage extends StatelessWidget{
     @override
     Widget build(BuildContext context) {
@@ -60,7 +60,7 @@ class LoginPage extends StatelessWidget{
       );
   }
 
-  Widget buttonGo(context){
+  Widget buttonGo(BuildContext context){
     return new Container(
     decoration: new BoxDecoration(
       boxShadow:[
@@ -90,7 +90,11 @@ class LoginPage extends StatelessWidget{
                             fontStyle: FontStyle.normal,
                           )),
                       onPressed: () {
-                        Navigator.pop(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context)=> MainIterface())
+
+                        );
 
                       },
                       color: Color.fromARGB(255,110,159,106),
@@ -102,7 +106,7 @@ class LoginPage extends StatelessWidget{
   );
   }
 
-  Widget buttonCriar(BuildContext context,texto){
+  Widget buttonCriar(BuildContext context,dynamic texto){
   return new Container(
     decoration: new BoxDecoration(
       boxShadow:[
@@ -140,7 +144,7 @@ class LoginPage extends StatelessWidget{
   );
 }
 
-Widget input(nome) {
+Widget input(dynamic nome) {
   return (
     Scaffold(
       body: TextField(
@@ -155,4 +159,4 @@ Widget input(nome) {
             labelText: '$nome', /*,labelStyle caso queira editar o labelText?*/
           ),
           style: TextStyle(color: Colors.purple, fontSize: 30))));
-}*/
+}
