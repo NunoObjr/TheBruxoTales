@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-
+/*import 'package:flutter/material.dart';
+import './mainInterface.dart';
 class CriarPage extends StatefulWidget {
   @override
   _CriarPageState createState() => _CriarPageState();
@@ -148,7 +148,11 @@ class _CriarPageState extends State<CriarPage> {
                             fontStyle: FontStyle.normal,
                           )),
                       onPressed: () {
-                        Navigator.pop(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context)=> MainIterface())
+
+                        );
 
                       },
                       color: Color.fromARGB(255,110,159,106),
@@ -184,4 +188,4 @@ class _CriarPageState extends State<CriarPage> {
       ),
     );
   }
-}
+}*/

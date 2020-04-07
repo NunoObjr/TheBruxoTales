@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget{
     @override
@@ -155,4 +155,4 @@ Widget input(nome) {
             labelText: '$nome', /*,labelStyle caso queira editar o labelText?*/
           ),
           style: TextStyle(color: Colors.purple, fontSize: 30))));
-}
+}*/

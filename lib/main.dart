@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import "./screens/loginPage.dart";
-import "./screens/criarPage.dart";
+import "./screens/mainInterface.dart";
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() {
@@ -104,7 +103,7 @@ class Home extends StatefulWidget {
   
 
   Widget logo() {
-    return new Container(
+    return Container(
           child: 
               Padding(
                   padding: EdgeInsets.all(20.0),
