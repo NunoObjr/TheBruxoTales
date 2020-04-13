@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import './screens/criarPage.dart';
 import './screens/loginPage.dart';
-import "./screens/mainInterface.dart";
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() {
@@ -50,50 +49,6 @@ class _HomeState extends State<Home> {
     )
     );
   }
-  Widget buttonCriar(BuildContext context,texto){
-  return Container(
-    decoration: BoxDecoration(
-      boxShadow:[
-        BoxShadow(
-          color: Colors.black,
-          blurRadius:5.0, //clarea
-          spreadRadius: 0.0,//expande
-          offset: Offset(
-            0.0, //horizontal
-            6.0, //vertical
-          ),
-        )
-      ],
-      borderRadius: BorderRadius.circular(50.0),
-    ),
-    child: 
-    SizedBox(
-                  width: 180,
-                  child: RaisedButton(
-                      child: Text('$texto',
-                            style: TextStyle(
-                            fontSize: 45,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                            letterSpacing: 2.0,
-                            fontStyle: FontStyle.normal,
-                          )),
-                      onPressed: () {
-                        if(texto=="Login"){
-                          Navigator.push(
-                            context, 
-                            MaterialPageRoute(
-                              builder: (context) => LoginPage()
-                            )
-                          );
-                        }
-                        else
-                          Navigator.push(
-                            context, 
-                            MaterialPageRoute(
-                              builder: (context) => CriarPage()
-                            )
-                          );
 
   Widget buttonCriar(BuildContext context, texto) {
     return new Container(

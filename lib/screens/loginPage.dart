@@ -9,86 +9,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController textControllerUsername = TextEditingController();
   TextEditingController textControllerPassword = TextEditingController();
-  Widget buttonGo(BuildContext context) {
-    return new 
-    Container(
-        child: SizedBox(
-            height:70,
-            child: RaisedButton(
-              color: Colors.green[300],
-              shape: CircleBorder(),
-              onPressed: () {
-                if (verificador(textControllerUsername.text, textControllerPassword.text)==true){
-                  Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => AppHome()));
-                }
-              },
-              child: Text('GO',
-                  style: TextStyle(
-                    fontSize: 45,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                    
-                  )),
-            )));
-  }
-
-  Widget buttonGo(BuildContext context){
-    return new Container(
-    decoration: new BoxDecoration(
-      boxShadow:[
-        BoxShadow(
-          color: Colors.black,
-          blurRadius:5.0, //clarea
-          spreadRadius: 0.0,//expande
-          offset: Offset(
-            0.0, //horizontal
-            6.0, //vertical
-          ),
-        )
-      ],
-      borderRadius: new BorderRadius.circular(50.0),
-    ),
-    child: 
-    SizedBox(
-                  width: 100,
-                  height: 90,
-                  child: RaisedButton(
-                      child: Text('GO',
-                            style: TextStyle(
-                            fontSize: 45,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black,
-                            letterSpacing: 2.0,
-                            fontStyle: FontStyle.normal,
-                          )),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context)=> MainIterface())
-
-                        );
-  Widget buttonCriar(BuildContext context, texto) {
-    return new Container(
-        child: SizedBox(
-            width: 180,
-            child: RaisedButton(
-                child: Text('$texto',
-                    style: TextStyle(
-                      fontSize: 45,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.black,
-                      letterSpacing: 2.0,
-                      fontStyle: FontStyle.normal,
-                    )),
-                onPressed: () {
-                  verificador(
-                      textControllerUsername.text, textControllerPassword.text);
-                },
-                color: Colors.green[300],
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0)))));
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -131,55 +51,103 @@ class _LoginPageState extends State<LoginPage> {
           ],
         )));
   }
-}
 
-Widget logo() {
-  return new Container(
-    child: Padding(
-        padding: EdgeInsets.all(20.0),
-        child: AspectRatio(
-          aspectRatio: 2.5 / 1,
-          child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(40.0)),
-              child: Image(
-                image: AssetImage('assets/witcher.jpg'),
-                fit: BoxFit.fill,
-              )),
-        )),
-  );
-}
 
-Widget input(
-  String hint, TextEditingController controlador, var obscure) {
-  return TextFormField(
-    keyboardType: TextInputType.text,
-    controller: controlador,
-    autofocus: false,
-    textAlign: TextAlign.start,
-    maxLines: 1,
-    obscureText: obscure,
-    style: TextStyle(
-      fontSize: 20,
-      fontWeight: FontWeight.w500,
-      height: 0.9,
-    ),
-    decoration: InputDecoration(
-      border: InputBorder.none,
-      contentPadding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
-      hintText: hint,
-      hintStyle: TextStyle(height: 0),
-      filled: true,
-      fillColor: Colors.white,
-    ),
-  );
-}
+  Widget buttonGo(BuildContext context) {
+    return new 
+    Container(
+        child: SizedBox(
+            height:70,
+            child: RaisedButton(
+              color: Colors.green[300],
+              shape: CircleBorder(),
+              onPressed: () {
+                if (verificador(textControllerUsername.text, textControllerPassword.text)==true){
+                  Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => AppHome()));
+                }
+              },
+              child: Text('GO',
+                  style: TextStyle(
+                    fontSize: 45,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
+                    
+                  )),
+            )));
+  }
 
-verificador(String username, password) {
-  if (username == 'admin' && password == 'admin') {
-    print(true);
-    return true;
-  } else {
-    print(false);
-    return false;
+  Widget buttonCriar(BuildContext context, texto) {
+    return new Container(
+        child: SizedBox(
+            width: 180,
+            child: RaisedButton(
+                child: Text('$texto',
+                    style: TextStyle(
+                      fontSize: 45,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.black,
+                      letterSpacing: 2.0,
+                      fontStyle: FontStyle.normal,
+                    )),
+                onPressed: () {
+                  verificador(
+                      textControllerUsername.text, textControllerPassword.text);
+                },
+                color: Colors.green[300],
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0)))));
+  }
+
+
+
+  Widget logo() {
+    return new Container(
+      child: Padding(
+          padding: EdgeInsets.all(20.0),
+          child: AspectRatio(
+            aspectRatio: 2.5 / 1,
+            child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(40.0)),
+                child: Image(
+                  image: AssetImage('assets/witcher.jpg'),
+                  fit: BoxFit.fill,
+                )),
+          )),
+    );
+  }
+
+  Widget input(String hint, TextEditingController controlador, var obscure) {
+    return TextFormField(
+      keyboardType: TextInputType.text,
+      controller: controlador,
+      autofocus: false,
+      textAlign: TextAlign.start,
+      maxLines: 1,
+      obscureText: obscure,
+      style: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.w500,
+        height: 0.9,
+      ),
+      decoration: InputDecoration(
+        border: InputBorder.none,
+        contentPadding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
+        hintText: hint,
+        hintStyle: TextStyle(height: 0),
+        filled: true,
+        fillColor: Colors.white,
+      ),
+    );
+  }
+
+  verificador(String username, password) {
+    if (username == 'admin' && password == 'admin') {
+      print(true);
+      return true;
+    } else {
+      print(false);
+      return false;
+    }
   }
 }

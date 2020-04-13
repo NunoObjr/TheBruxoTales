@@ -1,5 +1,6 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
-import './mainInterface.dart';
 class CriarPage extends StatefulWidget {
   @override
   _CriarPageState createState() => _CriarPageState();
@@ -20,12 +21,11 @@ class _CriarPageState extends State<CriarPage> {
             child: Form(
                 key: _formKey,
                 child:
-                ListView(
+                Column(
                     
                     children: <Widget>[
                       logo(),
-                      Text(
-                        'Email',
+                      Text('Email',
                         style: TextStyle(fontSize: 25),
                       ),
                       Padding(
@@ -33,29 +33,31 @@ class _CriarPageState extends State<CriarPage> {
                           child: Container(
                               width: 240,
                               height: 30,
-                              child: emailInput(textControllerEmail))),
+                              child: input(textControllerEmail, 'Email')
+                              )
+                            ),
                       Text('Username', style: TextStyle(fontSize: 25)),
                       Padding(
                           padding: EdgeInsets.all(5.0),
                           child: Container(
                               width: 240,
                               height: 30,
-                              child: userNameInput(textControllerUsername))),
+                              child: input(textControllerUsername, 'Username'))),
                       Text('Senha', style: TextStyle(fontSize: 25)),
                       Padding(
                           padding: EdgeInsets.all(5.0),
                           child: Container(
                               width: 240,
                               height: 30,
-                              child: senhaInput(textControllerSenha))),
+                              child: input(textControllerSenha, 'Senha'))),
                       Text('Confirmar Senha', style: TextStyle(fontSize: 25)),
                       Padding(
                           padding: EdgeInsets.all(5.0),
                           child: Container(
                               width: 240,
                               height: 30,
-                              child: confirmarSenhaInput(
-                                  textControllerConfirmarSenha))),
+                              child: input(
+                                  textControllerConfirmarSenha, 'Confirmar Senha'))),
                       Padding(
                           padding: EdgeInsets.only(top: 40.0),
                           child: buttonGo(context)),
@@ -65,31 +67,7 @@ class _CriarPageState extends State<CriarPage> {
                     ]))));
   }
 
-  Widget emailInput(controlador) {
-    return TextFormField(
-      
-      validator: (text) {
-        if (text.isEmpty || !text.contains('@')) {
-          return 'Email inválido';
-        }
-      },
-      keyboardType: TextInputType.text,
-      controller: controlador,
-      style: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.w500,
-        height: 0.9,
-      ),
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.only(top: -9),
-        filled: true,
-        fillColor: Colors.white,
-        hintText:'Email'
-      ),
-    );
-  }
-
-  Widget userNameInput(controlador) {
+  Widget input(controlador, tipo){
     return TextFormField(
       validator: (text) {
         if (text.isEmpty || !text.contains('@')) {
@@ -107,54 +85,10 @@ class _CriarPageState extends State<CriarPage> {
         contentPadding: EdgeInsets.only(top: -9),
         filled: true,
         fillColor: Colors.white,
+        hintText:tipo
       ),
     );
   }
-
-  Widget senhaInput(controlador) {
-    return TextFormField(
-      validator: (text) {
-        if (text.isEmpty || !text.contains('@')) {
-          return 'Email inválido';
-        }
-      },
-      keyboardType: TextInputType.text,
-      controller: controlador,
-      style: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.w500,
-        height: 0.9,
-      ),
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.only(top: -9),
-        filled: true,
-        fillColor: Colors.white,
-      ),
-    );
-  }
-
-  Widget confirmarSenhaInput(controlador) {
-    return TextFormField(
-      validator: (text) {
-        if (text.isEmpty || !text.contains('@')) {
-          return 'Email inválido';
-        }
-      },
-      keyboardType: TextInputType.text,
-      controller: controlador,
-      style: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.w500,
-        height: 0.9,
-      ),
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.only(top: -9),
-        filled: true,
-        fillColor: Colors.white,
-      ),
-    );
-  }
-
   Widget logo() {
     return Container(
       child: Padding(
@@ -201,7 +135,13 @@ class _CriarPageState extends State<CriarPage> {
                             fontStyle: FontStyle.normal,
                           )),
                       onPressed: () {
-                        Navigator.pop(context);
+                        if(textControllerConfirmarSenha.text == textControllerSenha.text && textControllerUsername.text != '' && textControllerEmail.text != ''){
+                          Navigator.pop(context);
+                        }
+                        else{
+
+                        }
+                        
 
                       },
                       color: Color.fromARGB(255,110,159,106),
@@ -249,43 +189,5 @@ class _CriarPageState extends State<CriarPage> {
                       shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0))))
   );
-  }
-  Widget input(String nome, dynamic controlador) {
-    return TextFormField(
-      keyboardType: TextInputType.text,
-      controller: controlador,
-      autofocus: false,
-      textAlign: TextAlign.start,
-      textInputAction: TextInputAction.done,
-      obscureText: false, //texto em formato de senha
-      style: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.w500,
-      ),
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.all(2),
-        labelText: "",
-        labelStyle: TextStyle(
-          color: Colors.pink,
-          fontSize: 18,
-          fontWeight: FontWeight.w500,
-        ),
-        child: SizedBox(
-            width: 180,
-            child: RaisedButton(
-                child: Text('$texto',
-                    style: TextStyle(
-                      fontSize: 45,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.black,
-                      letterSpacing: 2.0,
-                      fontStyle: FontStyle.normal,
-                    )),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                color: Color.fromARGB(255, 110, 159, 106),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0)))));
   }
 }
