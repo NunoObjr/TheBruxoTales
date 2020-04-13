@@ -19,55 +19,51 @@ class _CriarPageState extends State<CriarPage> {
         body: SingleChildScrollView(
             child: Form(
                 key: _formKey,
-                child:
-                ListView(
-                    
-                    children: <Widget>[
-                      logo(),
-                      Text(
-                        'Email',
-                        style: TextStyle(fontSize: 25),
-                      ),
-                      Padding(
-                          padding: EdgeInsets.all(5.0),
-                          child: Container(
-                              width: 240,
-                              height: 30,
-                              child: emailInput(textControllerEmail))),
-                      Text('Username', style: TextStyle(fontSize: 25)),
-                      Padding(
-                          padding: EdgeInsets.all(5.0),
-                          child: Container(
-                              width: 240,
-                              height: 30,
-                              child: userNameInput(textControllerUsername))),
-                      Text('Senha', style: TextStyle(fontSize: 25)),
-                      Padding(
-                          padding: EdgeInsets.all(5.0),
-                          child: Container(
-                              width: 240,
-                              height: 30,
-                              child: senhaInput(textControllerSenha))),
-                      Text('Confirmar Senha', style: TextStyle(fontSize: 25)),
-                      Padding(
-                          padding: EdgeInsets.all(5.0),
-                          child: Container(
-                              width: 240,
-                              height: 30,
-                              child: confirmarSenhaInput(
-                                  textControllerConfirmarSenha))),
-                      Padding(
-                          padding: EdgeInsets.only(top: 40.0),
-                          child: buttonGo(context)),
-                      Padding(
-                          padding: EdgeInsets.only(top: 60.0, bottom: 5.0),
-                          child: buttonCriar(context, "Voltar")),
-                    ]))));
+                child: Column(children: <Widget>[
+                  logo(),
+                  Text(
+                    'Email',
+                    style: TextStyle(fontSize: 25),
+                  ),
+                  Padding(
+                      padding: EdgeInsets.all(5.0),
+                      child: Container(
+                          width: 240,
+                          height: 30,
+                          child: emailInput(textControllerEmail))),
+                  Text('Username', style: TextStyle(fontSize: 25)),
+                  Padding(
+                      padding: EdgeInsets.all(5.0),
+                      child: Container(
+                          width: 240,
+                          height: 30,
+                          child: userNameInput(textControllerUsername))),
+                  Text('Senha', style: TextStyle(fontSize: 25)),
+                  Padding(
+                      padding: EdgeInsets.all(5.0),
+                      child: Container(
+                          width: 240,
+                          height: 30,
+                          child: senhaInput(textControllerSenha))),
+                  Text('Confirmar Senha', style: TextStyle(fontSize: 25)),
+                  Padding(
+                      padding: EdgeInsets.all(5.0),
+                      child: Container(
+                          width: 240,
+                          height: 30,
+                          child: confirmarSenhaInput(
+                              textControllerConfirmarSenha))),
+                  Padding(
+                      padding: EdgeInsets.only(top: 40.0),
+                      child: buttonGo(context)),
+                  Padding(
+                      padding: EdgeInsets.only(top: 60.0, bottom: 5.0),
+                      child: buttonCriar(context, "Voltar")),
+                ]))));
   }
 
   Widget emailInput(controlador) {
     return TextFormField(
-      
       validator: (text) {
         if (text.isEmpty || !text.contains('@')) {
           return 'Email inválido';
@@ -81,11 +77,10 @@ class _CriarPageState extends State<CriarPage> {
         height: 0.9,
       ),
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.only(top: -9),
-        filled: true,
-        fillColor: Colors.white,
-        hintText:'Email'
-      ),
+          contentPadding: EdgeInsets.only(top: -9),
+          filled: true,
+          fillColor: Colors.white,
+          hintText: 'Email'),
     );
   }
 

@@ -10,17 +10,18 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController textControllerUsername = TextEditingController();
   TextEditingController textControllerPassword = TextEditingController();
   Widget buttonGo(BuildContext context) {
-    return new 
-    Container(
+    return new Container(
         child: SizedBox(
-            height:70,
+            height: 70,
             child: RaisedButton(
               color: Colors.green[300],
               shape: CircleBorder(),
               onPressed: () {
-                if (verificador(textControllerUsername.text, textControllerPassword.text)==true){
+                if (verificador(textControllerUsername.text,
+                        textControllerPassword.text) ==
+                    true) {
                   Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => AppHome()));
+                      MaterialPageRoute(builder: (context) => AppHome()));
                 }
               },
               child: Text('GO',
@@ -28,7 +29,6 @@ class _LoginPageState extends State<LoginPage> {
                     fontSize: 45,
                     fontWeight: FontWeight.w400,
                     color: Colors.black,
-                    
                   )),
             )));
   }
@@ -47,8 +47,7 @@ class _LoginPageState extends State<LoginPage> {
                       fontStyle: FontStyle.normal,
                     )),
                 onPressed: () {
-                  verificador(
-                      textControllerUsername.text, textControllerPassword.text);
+                  Navigator.pop(context);
                 },
                 color: Colors.green[300],
                 shape: RoundedRectangleBorder(
@@ -68,15 +67,17 @@ class _LoginPageState extends State<LoginPage> {
             Divider(color: Colors.grey, height: 40.0),
             Text('Username', style: TextStyle(fontSize: 35.0)),
             Divider(color: Colors.grey, height: 25.0),
-            Container(
-                alignment: Alignment.center,
-                width: 240,
-                height: 32,
-                child: input(
-                  'Username',
-                  textControllerUsername,
-                  false,
-                )),
+            Center(child:
+             Container(
+                    width: 240,
+                    height: 32,
+                    child: Align(
+                alignment: Alignment(0.2,0.6),
+                child:input(
+                      'Username',
+                      textControllerUsername,
+                      false,
+               )   ))),
             Divider(color: Colors.grey, height: 25.0),
             Text('Password', style: TextStyle(fontSize: 35)),
             Divider(color: Colors.grey),
@@ -114,8 +115,7 @@ Widget logo() {
   );
 }
 
-Widget input(
-  String hint, TextEditingController controlador, var obscure) {
+Widget input(String hint, TextEditingController controlador, var obscure) {
   return TextFormField(
     keyboardType: TextInputType.text,
     controller: controlador,
