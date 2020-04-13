@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:thebruxotales/screens/appHome.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -8,7 +9,30 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController textControllerUsername = TextEditingController();
   TextEditingController textControllerPassword = TextEditingController();
-  
+  Widget buttonGo(BuildContext context) {
+    return new 
+    Container(
+        child: SizedBox(
+            height:70,
+            child: RaisedButton(
+              color: Colors.green[300],
+              shape: CircleBorder(),
+              onPressed: () {
+                if (verificador(textControllerUsername.text, textControllerPassword.text)==true){
+                  Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => AppHome()));
+                }
+              },
+              child: Text('GO',
+                  style: TextStyle(
+                    fontSize: 45,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
+                    
+                  )),
+            )));
+  }
+
   Widget buttonCriar(BuildContext context, texto) {
     return new Container(
         child: SizedBox(
@@ -39,42 +63,36 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(top: 20.0),
-              child: logo(),
-            ),
-            Text('Username', style: TextStyle(fontSize: 25)),
-            Padding(
-                padding: EdgeInsets.only(bottom: 20, top: 20),
-                child: Container(
-                    width: 240,
-                    height: 30,
-                    child: input(
-                      "Username",
-                      'Username',
-                      'teste',
-                      textControllerUsername,
-                      false,
-                    ))),
-            Text('Password', style: TextStyle(fontSize: 25)),
-            Padding(
-                padding: EdgeInsets.only(bottom: 40, top: 20),
-                child: Container(
-                    width: 240,
-                    height: 30,
-                    child: input(
-                      "Password",
-                      'Password',
-                      'testesword',
-                      textControllerPassword,
-                      false,
-                    ))),
-            Padding(
-                padding: EdgeInsets.only(bottom: 40.0),
-                child: buttonCriar(context, "GO")),
-            Padding(
-                padding: EdgeInsets.only(bottom: 40.0),
-                child: buttonCriar(context, "Voltar")),
+            Divider(color: Colors.grey),
+            logo(),
+            Divider(color: Colors.grey, height: 40.0),
+            Text('Username', style: TextStyle(fontSize: 35.0)),
+            Divider(color: Colors.grey, height: 25.0),
+            Container(
+                alignment: Alignment.center,
+                width: 240,
+                height: 32,
+                child: input(
+                  'Username',
+                  textControllerUsername,
+                  false,
+                )),
+            Divider(color: Colors.grey, height: 25.0),
+            Text('Password', style: TextStyle(fontSize: 35)),
+            Divider(color: Colors.grey),
+            Container(
+                alignment: Alignment.center,
+                width: 240,
+                height: 32,
+                child: input(
+                  "Password",
+                  textControllerPassword,
+                  false,
+                )),
+            Divider(color: Colors.grey),
+            buttonGo(context),
+            Divider(color: Colors.grey),
+            buttonCriar(context, "Voltar"),
           ],
         )));
   }
@@ -96,46 +114,25 @@ Widget logo() {
   );
 }
 
-Widget buttonGo() {
-  return new Container(
-      child: RaisedButton(
-    child: Text(
-      'GO',
-    ),
-    onPressed: () {},
-  ));
-}
-
 Widget input(
-  String nome,
-  label,
-  hint,
-  TextEditingController controlador,
-  var obscure,
-) {
+  String hint, TextEditingController controlador, var obscure) {
   return TextFormField(
     keyboardType: TextInputType.text,
     controller: controlador,
-
     autofocus: false,
     textAlign: TextAlign.start,
     maxLines: 1,
-    obscureText: obscure, //texto em formato de senha
+    obscureText: obscure,
     style: TextStyle(
       fontSize: 20,
       fontWeight: FontWeight.w500,
-      height: 1.4,
+      height: 0.9,
     ),
     decoration: InputDecoration(
+      border: InputBorder.none,
       contentPadding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
-      labelText: label,
-      labelStyle: TextStyle(
-        fontSize: 18,
-        fontWeight: FontWeight.w500,
-      ),
-      focusedBorder:
-          OutlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
       hintText: hint,
+      hintStyle: TextStyle(height: 0),
       filled: true,
       fillColor: Colors.white,
     ),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Teste extends StatefulWidget {
+class AppHome extends StatefulWidget {
   @override
-  _TesteState createState() => _TesteState();
+  _AppHomeState createState() => _AppHomeState();
 }
 
-class _TesteState extends State<Teste> {
+class _AppHomeState extends State<AppHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,11 +15,11 @@ class _TesteState extends State<Teste> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
-                padding: EdgeInsets.only(top: 20, left: 60, right: 80),
+                padding: EdgeInsets.only(top: 30, left: 60, right: 80),
                 child: Container(
                     height: 45,
                     child: TextField(
-                      decoration: InputDecoration(
+                      decoration: InputDecoration(border:InputBorder.none,
                         prefixIcon:
                             (Icon(Icons.search, size: 40, color: Colors.grey)),
                         filled: true,

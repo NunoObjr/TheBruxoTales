@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import "./screens/loginPage.dart";
 import "./screens/criarPage.dart";
-import "./screens/teste.dart";
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() {
