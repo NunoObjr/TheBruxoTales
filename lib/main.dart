@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import './screens/criarPage.dart';
 import './screens/loginPage.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() {
   runApp(MaterialApp(title: 'Main', home: Home()));
@@ -16,15 +15,6 @@ class _HomeState extends State<Home> {
   TextEditingController textController = TextEditingController();
 
     @override
-    void initState() {
-    super.initState();
-    // Start listening to changes.
-    textController.addListener(printLatestValue);
-    }
-
-    dynamic printLatestValue() {
-      print("Second text field: ${textController.text}");
-    }
     Widget build(BuildContext context) {
     return (
       Container(
@@ -106,32 +96,4 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget input(String nome, var controlador) {
-    return TextFormField(
-      keyboardType: TextInputType.text,
-      controller: controlador,
-      autofocus: false,
-      textAlign: TextAlign.start,
-      textInputAction: TextInputAction.done,
-      obscureText: false, //texto em formato de senha
-      style: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.w500,
-      ),
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.all(2),
-        labelText: "",
-        labelStyle: TextStyle(
-          color: Colors.pink,
-          fontSize: 18,
-          fontWeight: FontWeight.w500,
-        ),
-        focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.transparent, width: 5)),
-        hintText: '',
-        filled: true,
-        fillColor: Colors.white,
-      ),
-    );
-  }
 }
