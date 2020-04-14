@@ -62,10 +62,10 @@ class _LoginPageState extends State<LoginPage> {
               color: Colors.green[300],
               shape: CircleBorder(),
               onPressed: () {
-                if (verificador(textControllerUsername.text, textControllerPassword.text)==true){
+                //if (verificador(textControllerUsername.text, textControllerPassword.text)==true){
                   Navigator.push(context,
                         MaterialPageRoute(builder: (context) => AppHome()));
-                }
+                //}
               },
               child: Text('GO',
                   style: TextStyle(

@@ -1,7 +1,7 @@
 // This is a generated file; do not edit or check into version control.
 FLUTTER_ROOT=/Users/fasm/flutter
-FLUTTER_APPLICATION_PATH=/Users/fasm/flutter/TheBruxoTales/TheBruxoTales
-FLUTTER_TARGET=/Users/fasm/flutter/TheBruxoTales/TheBruxoTales/lib/main.dart
+FLUTTER_APPLICATION_PATH=/Users/fasm/TheBruxoTales/TheBruxoTales
+FLUTTER_TARGET=/Users/fasm/TheBruxoTales/TheBruxoTales/lib/main.dart
 FLUTTER_BUILD_DIR=build
 SYMROOT=${SOURCE_ROOT}/../build/ios
 FLUTTER_FRAMEWORK_DIR=/Users/fasm/flutter/bin/cache/artifacts/engine/ios
