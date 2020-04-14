@@ -60,7 +60,11 @@ class _CriarPageState extends State<CriarPage> {
                           context: context,
                           builder: (BuildContext context) {
                             return AlertDialog(backgroundColor: Colors.green,
+<<<<<<< HEAD
                               title: Text('Cadastro Concluído!'),
+=======
+                              title: Text('Cadastro Concluído!',),
+>>>>>>> developObertran
                               content: RaisedButton(
                                 onPressed: () {
                                    Navigator.push(context,
