@@ -91,8 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                       fontStyle: FontStyle.normal,
                     )),
                 onPressed: () {
-                  verificador(
-                      textControllerUsername.text, textControllerPassword.text);
+                  Navigator.pop(context);
                 },
                 color: Colors.green[300],
                 shape: RoundedRectangleBorder(
