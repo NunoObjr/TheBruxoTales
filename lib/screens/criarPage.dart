@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import '../main.dart';
 
 class CriarPage extends StatefulWidget {
   @override
@@ -14,12 +17,73 @@ class _CriarPageState extends State<CriarPage> {
 
   @override
   Widget build(BuildContext context) {
+    firestore() {
+      Firestore.instance.collection('usuarios').document().setData({
+        'email': textControllerEmail.text,
+        'nome': textControllerUsername.text,
+        'senha': textControllerSenha.text
+      });
+    }
+
+    Widget buttonGo(BuildContext context) {
+      return Container(
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black,
+                blurRadius: 5.0, //clarea
+                spreadRadius: 0.0, //expande
+                offset: Offset(
+                  0.0, //horizontal
+                  6.0, //vertical
+                ),
+              )
+            ],
+            borderRadius: BorderRadius.circular(50.0),
+          ),
+          child: SizedBox(
+              width: 100,
+              height: 90,
+              child: RaisedButton(
+                  child: Text('GO',
+                      style: TextStyle(
+                        fontSize: 45,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                        letterSpacing: 2.0,
+                        fontStyle: FontStyle.normal,
+                      )),
+                  onPressed: () {
+                    if (_formKey.currentState.validate()) {
+                      firestore();
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(backgroundColor: Colors.green,
+                              title: Text('Cadastro Concluído!',style:Colors.green,),
+                              content: RaisedButton(
+                                onPressed: () {
+                                   Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Home()));
+                                },
+                                child: Text('Ok'),
+                              ),
+                            );
+                          });
+                    }
+                  },
+                  color: Color.fromARGB(255, 110, 159, 106),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(60.0)))));
+    }
+
     return Scaffold(
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.white,
         body: SingleChildScrollView(
             child: Form(
                 key: _formKey,
                 child: Column(children: <Widget>[
+                  Divider(color: Colors.white),
                   logo(),
                   Text(
                     'Email',
@@ -28,31 +92,28 @@ class _CriarPageState extends State<CriarPage> {
                   Padding(
                       padding: EdgeInsets.all(5.0),
                       child: Container(
-                          width: 240,
-                          height: 30,
-                          child: emailInput(textControllerEmail))),
+                          width: 280,
+                          child: input(textControllerEmail, 'Email', false))),
                   Text('Username', style: TextStyle(fontSize: 25)),
                   Padding(
                       padding: EdgeInsets.all(5.0),
-                      child: Container(
-                          width: 240,
-                          height: 30,
-                          child: userNameInput(textControllerUsername))),
+                      child: SizedBox(
+                          width: 280,
+                          child: input(
+                              textControllerUsername, 'Username', false))),
                   Text('Senha', style: TextStyle(fontSize: 25)),
                   Padding(
                       padding: EdgeInsets.all(5.0),
                       child: Container(
-                          width: 240,
-                          height: 30,
-                          child: senhaInput(textControllerSenha))),
+                          width: 280,
+                          child: input(textControllerSenha, 'Senha', true))),
                   Text('Confirmar Senha', style: TextStyle(fontSize: 25)),
                   Padding(
                       padding: EdgeInsets.all(5.0),
                       child: Container(
-                          width: 240,
-                          height: 30,
-                          child: confirmarSenhaInput(
-                              textControllerConfirmarSenha))),
+                          width: 280,
+                          child: input(textControllerConfirmarSenha,
+                              'Confirmar Senha', true))),
                   Padding(
                       padding: EdgeInsets.only(top: 40.0),
                       child: buttonGo(context)),
@@ -62,96 +123,46 @@ class _CriarPageState extends State<CriarPage> {
                 ]))));
   }
 
-  Widget emailInput(controlador) {
+  Widget input(controlador, hint, obscure) {
     return TextFormField(
       validator: (text) {
-        if (text.isEmpty || !text.contains('@')) {
-          return 'Email inválido';
+        if (hint == 'Email') {
+          if (text.isEmpty || !text.contains('@')) {
+            return 'Email inválido';
+          }
+        }
+        if (hint == 'Username') {
+          if (text.isEmpty ||
+              (text.length) > 15 ||
+              !text.contains(RegExp(r'^[a-zA-Z0-9]+$'))) {
+            return 'Username inválido';
+          }
+        }
+        if (hint == 'Senha') {
+          if (text.isEmpty || text.length < 8) {
+            return 'Senha inválida';
+          }
+        }
+        if (hint == 'Confirmar Senha') {
+          if (text.isEmpty) {
+            return 'Confirme a senha';
+          }
+          if (textControllerSenha.text != textControllerConfirmarSenha.text) {
+            return 'As senhas não coincidem';
+          }
         }
       },
-      keyboardType: TextInputType.text,
       controller: controlador,
-      style: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.w500,
-        height: 0.9,
-      ),
+      obscureText: obscure,
       decoration: InputDecoration(
-          contentPadding: EdgeInsets.only(top: -9),
-          filled: true,
-          fillColor: Colors.white,
-          hintText: 'Email'),
-    );
-  }
-
-  Widget userNameInput(controlador) {
-    return TextFormField(
-      validator: (text) {
-        if (text.isEmpty || !text.contains('@')) {
-          return 'Email inválido';
-        }
-      },
-      keyboardType: TextInputType.text,
-      controller: controlador,
-      style: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.w500,
-        height: 0.9,
-      ),
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.only(top: -9),
-        filled: true,
-        fillColor: Colors.white,
-      ),
-    );
-  }
-
-  Widget senhaInput(controlador) {
-    return TextFormField(
-      validator: (text) {
-        if (text.isEmpty || !text.contains('@')) {
-          return 'Email inválido';
-        }
-      },
-      keyboardType: TextInputType.text,
-      controller: controlador,
-      style: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.w500,
-        height: 0.9,
-      ),
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.only(top: -9),
-        filled: true,
-        fillColor: Colors.white,
-      ),
-    );
-  }
-
-  Widget confirmarSenhaInput(controlador) {
-    return TextFormField(
-      validator: (text) {
-        if (text.isEmpty || !text.contains('@')) {
-          return 'Email inválido';
-        }
-      },
-      keyboardType: TextInputType.text,
-      controller: controlador,
-      style: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.w500,
-        height: 0.9,
-      ),
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.only(top: -9),
-        filled: true,
-        fillColor: Colors.white,
-      ),
+          hintText: hint,
+          enabledBorder:
+              OutlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
     );
   }
 
   Widget logo() {
-    return new Container(
+    return Container(
       child: Padding(
           padding: EdgeInsets.all(20.0),
           child: AspectRatio(
@@ -166,9 +177,9 @@ class _CriarPageState extends State<CriarPage> {
     );
   }
 
-  Widget buttonGo(context) {
-    return new Container(
-        decoration: new BoxDecoration(
+  Widget buttonCriar(BuildContext context, dynamic texto) {
+    return Container(
+        decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
               color: Colors.black,
@@ -180,43 +191,7 @@ class _CriarPageState extends State<CriarPage> {
               ),
             )
           ],
-          borderRadius: new BorderRadius.circular(50.0),
-        ),
-        child: SizedBox(
-            width: 100,
-            height: 90,
-            child: RaisedButton(
-                child: Text('GO',
-                    style: TextStyle(
-                      fontSize: 45,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black,
-                      letterSpacing: 2.0,
-                      fontStyle: FontStyle.normal,
-                    )),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                color: Color.fromARGB(255, 110, 159, 106),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(60.0)))));
-  }
-
-  Widget buttonCriar(BuildContext context, texto) {
-    return new Container(
-        decoration: new BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black,
-              blurRadius: 5.0, //clarea
-              spreadRadius: 0.0, //expande
-              offset: Offset(
-                0.0, //horizontal
-                6.0, //vertical
-              ),
-            )
-          ],
-          borderRadius: new BorderRadius.circular(50.0),
+          borderRadius: BorderRadius.circular(50.0),
         ),
         child: SizedBox(
             width: 180,
