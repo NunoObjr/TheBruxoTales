@@ -17,13 +17,14 @@ class _CriarPageState extends State<CriarPage> {
 
   @override
   Widget build(BuildContext context) {
-    firestore() {
+
+    /*firestore() {
       Firestore.instance.collection('usuarios').document().setData({
         'email': textControllerEmail.text,
         'nome': textControllerUsername.text,
         'senha': textControllerSenha.text
       });
-    }
+    }*/
 
     Widget buttonGo(BuildContext context) {
       return Container(
@@ -53,8 +54,8 @@ class _CriarPageState extends State<CriarPage> {
                         letterSpacing: 2.0,
                         fontStyle: FontStyle.normal,
                       )),
-                  onPressed: () {
-                    if (_formKey.currentState.validate()) {
+                 onPressed: () {},
+                    /*if (_formKey.currentState.validate()) {
                       firestore();
                       showDialog(
                           context: context,
@@ -71,7 +72,7 @@ class _CriarPageState extends State<CriarPage> {
                             );
                           });
                     }
-                  },
+                  },*/
                   color: Color.fromARGB(255, 110, 159, 106),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(60.0)))));
