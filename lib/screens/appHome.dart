@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:random_color/random_color.dart';
 
 class AppHome extends StatefulWidget {
   @override
@@ -19,10 +19,12 @@ class _AppHomeState extends State<AppHome> {
             child: Container(
                 height: 590,
                 child: Column(
-                  
                   children: <Widget>[
-                    searchBar(),
-                    bio(),
+                    Padding(
+                        padding: EdgeInsets.only(left: 20, right: 80),
+                        child: searchBar()),
+                    Padding(padding: EdgeInsets.only(right: 80), child: bio()),
+                    Divider(height: 60,color:Colors.grey),
                     feed(),
                   ],
                 )),
@@ -33,9 +35,8 @@ class _AppHomeState extends State<AppHome> {
 
 Widget feed() {
   return Column(
-   
     children: <Widget>[
-      Text('Suas Histórias'),
+      texto('Suas Histórias:',20.0),Divider(color:Colors.grey,height:20),
       Stack(
         children: <Widget>[
           Container(height: 200, width: 250, color: Colors.yellow),
@@ -51,33 +52,32 @@ Widget feed() {
   );
 }
 
-Widget texto(texto) {
+Widget texto(texto,size) {
   return Text(
     '$texto',
-    style: TextStyle(fontSize: 20),
+    style: TextStyle(fontSize: size),
   );
 }
 
 Widget bio() {
   return Column(
-      
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
           padding: EdgeInsets.only(top: 60),
-          child: texto('CarpeadoBugado'),
+          child: texto('CarpeadoBugado',20.0),
         ),
         Padding(
           padding: EdgeInsets.only(top: 10),
-          child: texto('Pontos: 570'),
+          child: texto('Pontos: 570',20.0),
         ),
         Padding(
           padding: EdgeInsets.only(top: 10),
-          child: texto('Ranking global: 1'),
+          child: texto('Ranking global: 1',20.0),
         ),
         Padding(
           padding: EdgeInsets.only(top: 10),
-          child: texto('Ranking Brasil: 1'),
+          child: texto('Ranking Brasil: 1',20.0),
         ),
       ]);
 }
@@ -85,7 +85,8 @@ Widget bio() {
 Widget searchBar() {
   return TextField(
     decoration: InputDecoration(
-      border: InputBorder.none,
+      border: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(21))),
       prefixIcon: (Icon(Icons.search, size: 40, color: Colors.grey)),
       filled: true,
       fillColor: Colors.white,
