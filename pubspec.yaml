@@ -19,6 +19,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+    
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -43,7 +44,12 @@ flutter:
  assets:
   - assets/60.jpg
   - assets/
-
+ fonts:
+  - family: MyFlutterApp
+    fonts:
+      - asset: icons/MyFlutterApp.ttf
+      
+ 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
