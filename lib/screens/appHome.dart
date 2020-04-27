@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../my_flutter_app_icons.dart';
+import 'dart:ui';
 
 class AppHome extends StatefulWidget {
   @override
@@ -12,9 +13,10 @@ class _AppHomeState extends State<AppHome> {
   
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.grey,
-        body: Row(children: <Widget>[
+        body: SingleChildScrollView(
+            child: Row(children: <Widget>[
           navBar(),
           Expanded(child:Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -24,18 +26,15 @@ class _AppHomeState extends State<AppHome> {
                 padding: EdgeInsets.only(top: 30, left: 10),
                 child: searchBar()),
             bio(),
+            Divider(height: 25, color: Colors.grey),
+            feed(),
             ],
             )),
             profileBar()
         ])
-      );
+      ));
   }
 
-
-
-Widget texto(texto){
-  return Text('$texto', style: TextStyle(fontSize: 20),);
-}
 
 Widget profileBar() {
   var opacidade = 0.0;
@@ -128,133 +127,180 @@ Widget profileBar() {
     ),
   );
 }
-
-Widget bio(){
-  return Container(
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Padding(
-              padding: EdgeInsets.only(top: 60, left: 30),
-              child: texto('CarpeadoBugado'),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 10, left: 30),
-              child: texto('Pontos: 570'),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 10, left: 30),
-              child: texto('Ranking global: 1'),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 10, left: 30),
-              child: texto('Ranking Brasil: 1'),
-            ),
-      ]
-    )
+Widget feed() {
+  return Column(
+    children: <Widget>[
+      texto('Suas Histórias:', 20.0),
+      Divider(color: Colors.grey, height: 20),
+      Container(
+          height: 220,
+          width: 280,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  fit: BoxFit.fill, image: AssetImage('assets/card1.jpg'))),
+          child: ClipRect(
+              child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                          width: 240,
+                          padding: EdgeInsets.all(5),
+                          child: texto('A morte da bezerra', 34.0)),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(
+                            Icons.star,
+                            color: Colors.yellow,
+                            size: 30,
+                          ),
+                          texto('5,0', 30.0)
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          texto('Dificuldade:', 25.0),
+                          Icon(Icons.sentiment_very_dissatisfied,
+                              color: Colors.red),
+                          Icon(Icons.sentiment_very_dissatisfied,
+                              color: Colors.red),
+                          Icon(Icons.sentiment_very_dissatisfied)
+                        ],
+                      ),
+                      Divider(color: Colors.transparent),
+                      texto('Vezes jogadas: 999', 25.0),
+                    ],
+                  )))),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          IconButton(
+              icon: Icon(Icons.arrow_left), iconSize: 40, onPressed: () {}),
+          Divider(
+            color: Colors.transparent,
+            indent: 50,
+          ),
+          IconButton(
+              icon: Icon(Icons.arrow_right), iconSize: 40, onPressed: () {})
+        ],
+      )
+    ],
   );
 }
 
-Widget navBar(){
-  return Container(
-    child: Column(
+Widget texto(texto, fontsize) {
+  return Text(
+    '$texto',
+    style: TextStyle(fontSize: fontsize, fontWeight: FontWeight.w600),
+  );
+}
+
+Widget bio() {
+  return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.only(top: 80,right: 20),
-          child: Container(
-          decoration: BoxDecoration(
-            color: Colors.grey[600],
-            borderRadius: new BorderRadius.only(topRight: Radius.circular(20.0), bottomRight: Radius.circular(20.0)),
-          ),
-            child: SizedBox(
-              width: 30.0,
-              height: 110.0,
-              child: new Container(
-                padding: EdgeInsets.only(top:27, right: 5),
-                child:new RotatedBox(
-                quarterTurns: 1,
-                child: Text("Inicio", style:TextStyle(fontSize:20))
-              )
-              )
-            ),
-          ),
+          padding: EdgeInsets.only(top: 30),
+          child: texto('CarpeadoBugado', 20.0),
         ),
         Padding(
-          padding: EdgeInsets.only(top: 60,right: 20),
-          child: Container(
-          decoration: BoxDecoration(
-            color: Colors.grey[600],
-            borderRadius: new BorderRadius.only(topRight: Radius.circular(20.0), bottomRight: Radius.circular(20.0)),
-          ),
-            child: SizedBox(
-              width: 30.0,
-              height: 110.0,
-              child: new Container(
-                padding: EdgeInsets.only(top:34, right: 5),
-                child:new RotatedBox(
-                quarterTurns: 1,
-                child: Text("Criar", style:TextStyle(fontSize:20))
-              )
-              )
-            ),
-          ),
+          padding: EdgeInsets.only(top: 10),
+          child: texto('Pontos: 570', 20.0),
         ),
         Padding(
-          padding: EdgeInsets.only(top: 60,right: 20),
-          child: Container(
-          decoration: BoxDecoration(
-            color: Colors.grey[600],
-            borderRadius: new BorderRadius.only(topRight: Radius.circular(20.0), bottomRight: Radius.circular(20.0)),
-          ),
-            child: SizedBox(
-              width: 30.0,
-              height: 110.0,
-              child: new Container(
-                padding: EdgeInsets.only(top:10, right: 5),
-                child:new RotatedBox(
-                quarterTurns: 1,
-                child: Text("Comunidade", style:TextStyle(fontSize:20))
-              )
-              )
-            ),
-          ),
+          padding: EdgeInsets.only(top: 10),
+          child: texto('Ranking global: 1', 20.0),
         ),
         Padding(
-          padding: EdgeInsets.only(top: 60,right: 20),
-          child: Container(
-          decoration: BoxDecoration(
-            color: Colors.grey[600],
-            borderRadius: new BorderRadius.only(topRight: Radius.circular(20.0), bottomRight: Radius.circular(20.0)),
-          ),
-            child: SizedBox(
-              width: 30.0,
-              height: 110.0,
-              child: new Container(
-                padding: EdgeInsets.only(top:17, right: 5),
-                child:new RotatedBox(
-                quarterTurns: 1,
-                child: Text("Ranking", style:TextStyle(fontSize:20))
-              )
-              )
-            ),
-          ),
+          padding: EdgeInsets.only(top: 10),
+          child: texto('Ranking Brasil: 1', 20.0),
         ),
-      ]
+      ]);
+}
+
+Widget searchBar() {
+  return TextField(
+    decoration: InputDecoration(
+      border: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(21))),
+      prefixIcon: (Icon(Icons.search, size: 40, color: Colors.grey)),
+      filled: true,
+      fillColor: Colors.white,
     ),
   );
 }
 
-Widget searchBar(){
+Widget navBar() {
   return Container(
-                    height: 45,
-                    child: TextField(
-                      decoration: InputDecoration(border:InputBorder.none,
-                        prefixIcon:
-                            (Icon(Icons.search, size: 40, color: Colors.grey)),
-                        filled: true,
-                        fillColor: Colors.white,
-                      ),
-                    ));
+    child: Column(children: <Widget>[
+      Padding(
+          padding: EdgeInsets.only(top: 25, right: 20),
+          child: Container(
+              decoration: BoxDecoration(
+                color: Colors.grey[600],
+                borderRadius: new BorderRadius.only(
+                    topRight: Radius.circular(20.0),
+                    bottomRight: Radius.circular(20.0)),
+              ),
+              width: 30.0,
+              height: 110.0,
+              child: Padding(
+                  padding: EdgeInsets.only(top: 27, right: 5),
+                  child: new RotatedBox(
+                      quarterTurns: 1,
+                      child: Text("Inicio", style: TextStyle(fontSize: 20)))))),
+      Padding(
+        padding: EdgeInsets.only(top: 60, right: 20),
+        child: Container(
+            decoration: BoxDecoration(
+              color: Colors.grey[600],
+              borderRadius: new BorderRadius.only(
+                  topRight: Radius.circular(20.0),
+                  bottomRight: Radius.circular(20.0)),
+            ),
+            width: 30.0,
+            height: 110.0,
+            padding: EdgeInsets.only(top: 34, right: 5),
+            child: new RotatedBox(
+                quarterTurns: 1,
+                child: Text("Criar", style: TextStyle(fontSize: 20)))),
+      ),
+      Padding(
+        padding: EdgeInsets.only(top: 60, right: 20),
+        child: Container(
+            decoration: BoxDecoration(
+              color: Colors.grey[600],
+              borderRadius: new BorderRadius.only(
+                  topRight: Radius.circular(20.0),
+                  bottomRight: Radius.circular(20.0)),
+            ),
+            width: 30.0,
+            height: 110.0,
+            padding: EdgeInsets.only(top: 10, right: 5),
+            child: new RotatedBox(
+                quarterTurns: 1,
+                child: Text("Comunidade", style: TextStyle(fontSize: 20)))),
+      ),
+      Padding(
+        padding: EdgeInsets.only(top: 60, right: 20),
+        child: Container(
+            decoration: BoxDecoration(
+              color: Colors.grey[600],
+              borderRadius: new BorderRadius.only(
+                  topRight: Radius.circular(20.0),
+                  bottomRight: Radius.circular(20.0)),
+            ),
+            width: 30.0,
+            height: 110.0,
+            padding: EdgeInsets.only(top: 17, right: 5),
+            child: new RotatedBox(
+                quarterTurns: 1,
+                child: Text("Ranking", style: TextStyle(fontSize: 20)))),
+      ),
+    ]),
+  );
 }
 }

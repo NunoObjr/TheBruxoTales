@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import '../main.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
+//import '../main.dart';
 
 class CriarPage extends StatefulWidget {
   @override
@@ -17,13 +17,13 @@ class _CriarPageState extends State<CriarPage> {
 
   @override
   Widget build(BuildContext context) {
-    firestore() {
+    /*firestore() {
       Firestore.instance.collection('usuarios').document().setData({
         'email': textControllerEmail.text,
         'nome': textControllerUsername.text,
         'senha': textControllerSenha.text
       });
-    }
+    }*/
 
     Widget buttonGo(BuildContext context) {
       return Container(
@@ -53,14 +53,14 @@ class _CriarPageState extends State<CriarPage> {
                         letterSpacing: 2.0,
                         fontStyle: FontStyle.normal,
                       )),
-                  onPressed: () {
-                    if (_formKey.currentState.validate()) {
+                  onPressed: () {},
+                  /*if (_formKey.currentState.validate()) {
                       firestore();
                       showDialog(
                           context: context,
                           builder: (BuildContext context) {
                             return AlertDialog(backgroundColor: Colors.green,
-                              title: Text('Cadastro Concluído!'),
+                              title: Text('Cadastro Concluído!',),
                               content: RaisedButton(
                                 onPressed: () {
                                    Navigator.push(context,
@@ -71,7 +71,7 @@ class _CriarPageState extends State<CriarPage> {
                             );
                           });
                     }
-                  },
+                  },*/
                   color: Color.fromARGB(255, 110, 159, 106),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(60.0)))));
@@ -129,27 +129,34 @@ class _CriarPageState extends State<CriarPage> {
         if (hint == 'Email') {
           if (text.isEmpty || !text.contains('@')) {
             return 'Email inválido';
+          } else {
+            return null;
           }
-        }
-        if (hint == 'Username') {
+        } else if (hint == 'Username') {
           if (text.isEmpty ||
               (text.length) > 15 ||
               !text.contains(RegExp(r'^[a-zA-Z0-9]+$'))) {
             return 'Username inválido';
+          } else {
+            return null;
           }
-        }
-        if (hint == 'Senha') {
+        } else if (hint == 'Senha') {
           if (text.isEmpty || text.length < 8) {
             return 'Senha inválida';
+          } else {
+            return null;
           }
-        }
-        if (hint == 'Confirmar Senha') {
+        } else if (hint == 'Confirmar Senha') {
           if (text.isEmpty) {
             return 'Confirme a senha';
-          }
-          if (textControllerSenha.text != textControllerConfirmarSenha.text) {
+          } else if (textControllerSenha.text !=
+              textControllerConfirmarSenha.text) {
             return 'As senhas não coincidem';
+          } else {
+            return null;
           }
+        } else {
+          return null;
         }
       },
       controller: controlador,
@@ -160,6 +167,7 @@ class _CriarPageState extends State<CriarPage> {
               OutlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
     );
   }
+
   Widget logo() {
     return Container(
       child: Padding(
@@ -176,89 +184,38 @@ class _CriarPageState extends State<CriarPage> {
     );
   }
 
-  Widget buttonGo(BuildContext context){
+  Widget buttonCriar(BuildContext context, dynamic texto) {
     return Container(
-    decoration: BoxDecoration(
-      boxShadow:[
-        BoxShadow(
-          color: Colors.black,
-          blurRadius:5.0, //clarea
-          spreadRadius: 0.0,//expande
-          offset: Offset(
-            0.0, //horizontal
-            6.0, //vertical
-          ),
-        )
-      ],
-      borderRadius: BorderRadius.circular(50.0),
-    ),
-    child: 
-    SizedBox(
-                  width: 100,
-                  height: 90,
-                  child: RaisedButton(
-                      child: Text('GO',
-                            style: TextStyle(
-                            fontSize: 45,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black,
-                            letterSpacing: 2.0,
-                            fontStyle: FontStyle.normal,
-                          )),
-                      onPressed: () {
-                        if(textControllerConfirmarSenha.text == textControllerSenha.text && textControllerUsername.text != '' && textControllerEmail.text != ''){
-                          Navigator.pop(context);
-                        }
-                        else{
-
-                        }
-                        
-
-                      },
-                      color: Color.fromARGB(255,110,159,106),
-                      shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(60.0)
-                      )
-                      )
-      )
-  );
-  }
-
-  Widget buttonCriar(BuildContext context,dynamic texto){
-  return Container(
-    decoration: BoxDecoration(
-      boxShadow:[
-        BoxShadow(
-          color: Colors.black,
-          blurRadius:5.0, //clarea
-          spreadRadius: 0.0,//expande
-          offset: Offset(
-            0.0, //horizontal
-            6.0, //vertical
-          ),
-        )
-      ],
-      borderRadius: BorderRadius.circular(50.0),
-    ),
-    child: 
-    SizedBox(
-                  width: 180,
-                  child: RaisedButton(
-                      child: Text('$texto',
-                            style: TextStyle(
-                            fontSize: 45,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                            letterSpacing: 2.0,
-                            fontStyle: FontStyle.normal,
-                          )),
-                      onPressed: () {
-                        Navigator.pop(context);
-
-                      },
-                      color: Color.fromARGB(255,110,159,106),
-                      shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0))))
-  );
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black,
+              blurRadius: 5.0, //clarea
+              spreadRadius: 0.0, //expande
+              offset: Offset(
+                0.0, //horizontal
+                6.0, //vertical
+              ),
+            )
+          ],
+          borderRadius: BorderRadius.circular(50.0),
+        ),
+        child: SizedBox(
+            width: 180,
+            child: RaisedButton(
+                child: Text('$texto',
+                    style: TextStyle(
+                      fontSize: 45,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.black,
+                      letterSpacing: 2.0,
+                      fontStyle: FontStyle.normal,
+                    )),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                color: Color.fromARGB(255, 110, 159, 106),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0)))));
   }
 }
