@@ -22,7 +22,7 @@ class _AppHomeState extends State<AppHome> {
                     padding: EdgeInsets.only(left: 20, right: 80),
                     child: searchBar()),
                 Padding(padding: EdgeInsets.only(right: 80), child: bio()),
-                Divider(height: 25, color: Colors.grey),
+                Divider(height: 25, color: Colors.transparent),
                 feed(),
               ],
             ),
@@ -50,8 +50,10 @@ Widget feed() {
                     children: <Widget>[
                       Container(
                           width: 240,
+                          height:90,
                           padding: EdgeInsets.all(5),
-                          child: texto('A morte da bezerra', 34.0)),
+                          child:
+                          texto('A morte da bezerra', 34.0)),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
