@@ -17,7 +17,6 @@ class _CriarPageState extends State<CriarPage> {
 
   @override
   Widget build(BuildContext context) {
-
     /*firestore() {
       Firestore.instance.collection('usuarios').document().setData({
         'email': textControllerEmail.text,
@@ -54,8 +53,8 @@ class _CriarPageState extends State<CriarPage> {
                         letterSpacing: 2.0,
                         fontStyle: FontStyle.normal,
                       )),
-                 onPressed: () {},
-                    /*if (_formKey.currentState.validate()) {
+                  onPressed: () {},
+                  /*if (_formKey.currentState.validate()) {
                       firestore();
                       showDialog(
                           context: context,
@@ -130,27 +129,34 @@ class _CriarPageState extends State<CriarPage> {
         if (hint == 'Email') {
           if (text.isEmpty || !text.contains('@')) {
             return 'Email inválido';
+          } else {
+            return null;
           }
-        }
-        if (hint == 'Username') {
+        } else if (hint == 'Username') {
           if (text.isEmpty ||
               (text.length) > 15 ||
               !text.contains(RegExp(r'^[a-zA-Z0-9]+$'))) {
             return 'Username inválido';
+          } else {
+            return null;
           }
-        }
-        if (hint == 'Senha') {
+        } else if (hint == 'Senha') {
           if (text.isEmpty || text.length < 8) {
             return 'Senha inválida';
+          } else {
+            return null;
           }
-        }
-        if (hint == 'Confirmar Senha') {
+        } else if (hint == 'Confirmar Senha') {
           if (text.isEmpty) {
             return 'Confirme a senha';
-          }
-          if (textControllerSenha.text != textControllerConfirmarSenha.text) {
+          } else if (textControllerSenha.text !=
+              textControllerConfirmarSenha.text) {
             return 'As senhas não coincidem';
+          } else {
+            return null;
           }
+        } else {
+          return null;
         }
       },
       controller: controlador,

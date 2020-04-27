@@ -1,5 +1,5 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:random_color/random_color.dart';
 
 class AppHome extends StatefulWidget {
   @override
@@ -16,18 +16,16 @@ class _AppHomeState extends State<AppHome> {
             child: Row(children: <Widget>[
           navBar(),
           Expanded(
-            child: Container(
-                height: 590,
-                child: Column(
-                  children: <Widget>[
-                    Padding(
-                        padding: EdgeInsets.only(left: 20, right: 80),
-                        child: searchBar()),
-                    Padding(padding: EdgeInsets.only(right: 80), child: bio()),
-                    Divider(height: 60,color:Colors.grey),
-                    feed(),
-                  ],
-                )),
+            child: Column(
+              children: <Widget>[
+                Padding(
+                    padding: EdgeInsets.only(left: 20, right: 80),
+                    child: searchBar()),
+                Padding(padding: EdgeInsets.only(right: 80), child: bio()),
+                Divider(height: 25, color: Colors.grey),
+                feed(),
+              ],
+            ),
           )
         ])));
   }
@@ -36,26 +34,71 @@ class _AppHomeState extends State<AppHome> {
 Widget feed() {
   return Column(
     children: <Widget>[
-      texto('Suas Histórias:',20.0),Divider(color:Colors.grey,height:20),
-      Stack(
+      texto('Suas Histórias:', 20.0),
+      Divider(color: Colors.grey, height: 20),
+      Container(
+          height: 220,
+          width: 280,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  fit: BoxFit.fill, image: AssetImage('assets/card1.jpg'))),
+          child: ClipRect(
+              child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                          width: 240,
+                          padding: EdgeInsets.all(5),
+                          child: texto('A morte da bezerra', 34.0)),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(
+                            Icons.star,
+                            color: Colors.yellow,
+                            size: 30,
+                          ),
+                          texto('5,0', 30.0)
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          texto('Dificuldade:', 25.0),
+                          Icon(Icons.sentiment_very_dissatisfied,
+                              color: Colors.red),
+                          Icon(Icons.sentiment_very_dissatisfied,
+                              color: Colors.red),
+                          Icon(Icons.sentiment_very_dissatisfied)
+                        ],
+                      ),
+                      Divider(color: Colors.transparent),
+                      texto('Vezes jogadas: 999', 25.0),
+                    ],
+                  )))),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Container(height: 200, width: 250, color: Colors.yellow),
-          Positioned(
-              right: 40,
-              child: Container(height: 200, width: 250, color: Colors.red)),
-          Positioned(
-              right: 80,
-              child: Container(height: 200, width: 250, color: Colors.blue)),
+          IconButton(
+              icon: Icon(Icons.arrow_left), iconSize: 40, onPressed: () {}),
+          Divider(
+            color: Colors.transparent,
+            indent: 50,
+          ),
+          IconButton(
+              icon: Icon(Icons.arrow_right), iconSize: 40, onPressed: () {})
         ],
       )
     ],
   );
 }
 
-Widget texto(texto,size) {
+Widget texto(texto, fontsize) {
   return Text(
     '$texto',
-    style: TextStyle(fontSize: size),
+    style: TextStyle(fontSize: fontsize, fontWeight: FontWeight.w600),
   );
 }
 
@@ -64,20 +107,20 @@ Widget bio() {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.only(top: 60),
-          child: texto('CarpeadoBugado',20.0),
+          padding: EdgeInsets.only(top: 30),
+          child: texto('CarpeadoBugado', 20.0),
         ),
         Padding(
           padding: EdgeInsets.only(top: 10),
-          child: texto('Pontos: 570',20.0),
+          child: texto('Pontos: 570', 20.0),
         ),
         Padding(
           padding: EdgeInsets.only(top: 10),
-          child: texto('Ranking global: 1',20.0),
+          child: texto('Ranking global: 1', 20.0),
         ),
         Padding(
           padding: EdgeInsets.only(top: 10),
-          child: texto('Ranking Brasil: 1',20.0),
+          child: texto('Ranking Brasil: 1', 20.0),
         ),
       ]);
 }
