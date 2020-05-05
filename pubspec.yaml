@@ -44,10 +44,10 @@ flutter:
  assets:
   - assets/60.jpg
   - assets/
- fonts:
-  - family: MyFlutterApp
-    fonts:
-      - asset: icons/MyFlutterApp.ttf
+ #fonts:
+  #- family: MyFlutterApp
+    #fonts:
+      #- asset: icons/MyFlutterApp.ttf
       
  
   # The following line ensures that the Material Icons font is
