@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import './screens/criarPage.dart';
 import './screens/loginPage.dart';
 
+
 void main() {
   runApp(MaterialApp(title: 'Main', home: Home()));
+  
 }
 
 class Home extends StatefulWidget {
@@ -14,8 +16,11 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   TextEditingController textController = TextEditingController();
 
+  
+
     @override
     Widget build(BuildContext context) {
+      
     return (
       Container(
       color: Colors.grey,
