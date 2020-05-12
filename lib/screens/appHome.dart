@@ -14,7 +14,11 @@ class _AppHomeState extends State<AppHome> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.grey,
-        body: Row(
+        body: Stack(children: <Widget>[],)
+        
+        
+        
+        Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(color: Colors.pink, child: navBar()),
@@ -31,7 +35,13 @@ class _AppHomeState extends State<AppHome> {
                             color: Colors.transparent,
                             height: 50,
                           ),
-                          Container(color: Colors.blue, child: feed()),
+                          
+                              Positioned(
+                                child: Container(
+                                    color: Colors.blue, child: feed()),
+                              )
+                            ,
+                          
                         ],
                       ))),
               Container(color: Colors.red, child: profileBar())
