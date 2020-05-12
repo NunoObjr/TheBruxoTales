@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
-import 'package:flutter/foundation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../screens/ComunidadePage.dart';
 
 class AppHome extends StatefulWidget {
   @override
@@ -14,21 +14,28 @@ class _AppHomeState extends State<AppHome> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.grey,
-        body: Row(children: <Widget>[
-          navBar(),
-          Expanded(
-              child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+        body: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Padding(
-                  padding: EdgeInsets.only(top: 30, left: 10),
-                  child: searchBar()),
-              bio(),
-              feed()
-            ],
-          )),
-        ]));
+              Container(color: Colors.pink, child: navBar()),
+              Expanded(
+                  child: Container(
+                      color: Colors.green,
+                      child: Column(
+                        children: <Widget>[
+                          Padding(
+                              padding: EdgeInsets.only(top: 30),
+                              child: searchBar()),
+                          bio(),
+                          Divider(
+                            color: Colors.transparent,
+                            height: 50,
+                          ),
+                          Container(color: Colors.blue, child: feed()),
+                        ],
+                      ))),
+              Container(color: Colors.red, child: profileBar())
+            ]));
   }
 
   Widget profileBar() {
@@ -38,10 +45,10 @@ class _AppHomeState extends State<AppHome> {
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Padding(
-              padding: EdgeInsets.only(top: 25),
+              padding: EdgeInsets.only(top: 0),
               child: Column(children: <Widget>[
                 Padding(
                   padding: EdgeInsets.all(5),
@@ -55,36 +62,34 @@ class _AppHomeState extends State<AppHome> {
                           clique = !clique;
                           opacidade = 1;
                         }
-                        print(opacidade);
                       },
                       borderSide: BorderSide.none,
-                      child: Icon(Icons.account_circle, size: 65)),
+                      child: Icon(Icons.account_circle, size: 50)),
                 ),
-                Padding(
-                    padding: EdgeInsets.all(5),
-                    child: Text(
-                      "CarpeadoBugado",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                    ))
+                Text(
+                  "CarpeadoBugado",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                )
               ])),
           Opacity(
               opacity: opacidade,
               child: Padding(
-                  padding: EdgeInsets.only(top: 10, left: 4),
+                  padding: EdgeInsets.only(
+                    top: 5,
+                  ),
                   child: Row(children: <Widget>[
                     Icon(
                       Icons.settings,
-                      size: 45,
+                      size: 35,
                     ),
                     Padding(
                         padding: EdgeInsets.only(left: 20),
-                        child: Icon(Icons.launch, size: 45))
+                        child: Icon(Icons.launch, size: 30))
                   ]))),
           Opacity(
               opacity: opacidade,
               child: Padding(
-                padding: EdgeInsets.only(top: 12, left: 4),
+                padding: EdgeInsets.only(top: 6, left: 4),
                 child: Container(
                     decoration: BoxDecoration(
                         color: Colors.grey[600],
@@ -93,7 +98,7 @@ class _AppHomeState extends State<AppHome> {
                       children: <Widget>[
                         Padding(
                             padding: EdgeInsets.only(left: 5),
-                            child: Icon(Icons.people_outline, size: 45)),
+                            child: Icon(Icons.people_outline, size: 35)),
                         Padding(
                           child: SizedBox(
                               width: 60,
@@ -109,7 +114,7 @@ class _AppHomeState extends State<AppHome> {
           Opacity(
               opacity: opacidade,
               child: Padding(
-                padding: EdgeInsets.only(top: 12, left: 4),
+                padding: EdgeInsets.only(top: 6, left: 4),
                 child: Container(
                     decoration: BoxDecoration(
                         color: Colors.grey[600],
@@ -118,7 +123,7 @@ class _AppHomeState extends State<AppHome> {
                       children: <Widget>[
                         Padding(
                             padding: EdgeInsets.only(left: 5),
-                            child: Icon(Icons.history, size: 45)),
+                            child: Icon(Icons.history, size: 35)),
                         Padding(
                           child: SizedBox(
                               width: 60,
@@ -134,7 +139,7 @@ class _AppHomeState extends State<AppHome> {
           Opacity(
               opacity: opacidade,
               child: Padding(
-                padding: EdgeInsets.only(top: 12, left: 4),
+                padding: EdgeInsets.only(top: 6, left: 4),
                 child: Container(
                     decoration: BoxDecoration(
                         color: Colors.grey[600],
@@ -143,7 +148,7 @@ class _AppHomeState extends State<AppHome> {
                       children: <Widget>[
                         Padding(
                             padding: EdgeInsets.only(left: 5),
-                            child: Icon(Icons.layers, size: 45)),
+                            child: Icon(Icons.layers, size: 35)),
                         Padding(
                           child: SizedBox(
                               width: 60,
@@ -159,7 +164,7 @@ class _AppHomeState extends State<AppHome> {
           Opacity(
               opacity: opacidade,
               child: Padding(
-                padding: EdgeInsets.only(top: 12, left: 4),
+                padding: EdgeInsets.only(top: 6, left: 4),
                 child: Container(
                     decoration: BoxDecoration(
                         color: Colors.grey[600],
@@ -168,7 +173,7 @@ class _AppHomeState extends State<AppHome> {
                       children: <Widget>[
                         Padding(
                             padding: EdgeInsets.only(left: 5),
-                            child: Icon(Icons.help_outline, size: 45)),
+                            child: Icon(Icons.help_outline, size: 35)),
                         Padding(
                           child: SizedBox(
                               width: 60,
@@ -186,35 +191,6 @@ class _AppHomeState extends State<AppHome> {
     );
   }
 
-/*StreamBuilder(
-            stream: Firestore.instance
-                .collection('Usuarios')
-                .document('Andrey kk')
-                .collection('Conto')
-                .snapshots(),
-            builder: (context, snapshot) {
-              if (!snapshot.hasData) {
-                return Text('Loading data...');
-              } else {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.only(top: 20.0),
-                      child: logo(),
-                    ),
-                    Text(snapshot.data.documents[0]['Vezes-Jogadas'].toString(),
-                        style: TextStyle(color: Colors.black)),
-                    
-                    Padding(
-                        padding: EdgeInsets.only(top: 60.0),
-                        child: buttonCriar(context, 'Criar')),
-                    Padding(
-                        padding: EdgeInsets.only(bottom: 140.0),
-                        child: buttonCriar(context, 'Login')),
-                  ],
-                );
-              }*/
   Widget difCor() {
     return StreamBuilder(
         stream: Firestore.instance
@@ -225,8 +201,7 @@ class _AppHomeState extends State<AppHome> {
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Text('Loading data...');
-          } 
-          else if (snapshot.data.documents[0]['Dificuldade'].toString() ==
+          } else if (snapshot.data.documents[0]['Dificuldade'].toString() ==
               '0') {
             return Row(children: <Widget>[
               Icon(
@@ -259,9 +234,9 @@ class _AppHomeState extends State<AppHome> {
             return Column(
               children: <Widget>[
                 texto('Suas Histórias:', 20.0),
-                Divider(color: Colors.grey, height: 20),
+                Divider(color: Colors.grey, height: 10),
                 Container(
-                    height: 240,
+                    height: 210,
                     width: 280,
                     decoration: BoxDecoration(
                         image: DecorationImage(
@@ -273,12 +248,10 @@ class _AppHomeState extends State<AppHome> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
-                                Container(
-                                    padding: EdgeInsets.all(5),
-                                    child: texto(
-                                        snapshot.data.documents[0]['Titulo']
-                                            .toString(),
-                                        34.0)),
+                                texto(
+                                    snapshot.data.documents[0]['Titulo']
+                                        .toString(),
+                                    34.0),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
@@ -296,7 +269,8 @@ class _AppHomeState extends State<AppHome> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
-                                    texto('Dificuldade:', 25.0),difCor()
+                                    texto('Dificuldade:', 25.0),
+                                    difCor()
                                   ],
                                 ),
                                 Divider(color: Colors.transparent),
@@ -380,8 +354,8 @@ class _AppHomeState extends State<AppHome> {
                       topRight: Radius.circular(20.0),
                       bottomRight: Radius.circular(20.0)),
                 ),
-                width: 30.0,
-                height: 110.0,
+                width: 45.0,
+                height: 100.0,
                 child: Padding(
                     padding: EdgeInsets.only(top: 27, right: 5),
                     child: new RotatedBox(
@@ -389,7 +363,7 @@ class _AppHomeState extends State<AppHome> {
                         child:
                             Text("Inicio", style: TextStyle(fontSize: 20)))))),
         Padding(
-          padding: EdgeInsets.only(top: 15, right: 20),
+          padding: EdgeInsets.only(top: 15, right: 35),
           child: Container(
               decoration: BoxDecoration(
                 color: Colors.grey[600],
@@ -405,23 +379,32 @@ class _AppHomeState extends State<AppHome> {
                   child: Text("Criar", style: TextStyle(fontSize: 20)))),
         ),
         Padding(
-          padding: EdgeInsets.only(top: 15, right: 20),
-          child: Container(
-              decoration: BoxDecoration(
-                color: Colors.grey[600],
-                borderRadius: new BorderRadius.only(
-                    topRight: Radius.circular(20.0),
-                    bottomRight: Radius.circular(20.0)),
-              ),
-              width: 30.0,
-              height: 110.0,
-              padding: EdgeInsets.only(top: 10, right: 5),
-              child: new RotatedBox(
-                  quarterTurns: 1,
-                  child: Text("Comunidade", style: TextStyle(fontSize: 20)))),
-        ),
+            padding: EdgeInsets.only(top: 15, right: 35),
+            child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.grey[600],
+                  borderRadius: new BorderRadius.only(
+                      topRight: Radius.circular(20.0),
+                      bottomRight: Radius.circular(20.0)),
+                ),
+                width: 30.0,
+                height: 150.0,
+                padding: EdgeInsets.only(top: 4, right: 5),
+                child: new RotatedBox(
+                    quarterTurns: 1,
+                    child: OutlineButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ComunidadePage()));
+                        },
+                        child: Text("Comunidade",
+                            style: TextStyle(
+                              fontSize: 20,
+                            )))))),
         Padding(
-          padding: EdgeInsets.only(top: 15, right: 20),
+          padding: EdgeInsets.only(top: 15, right: 35),
           child: Container(
               decoration: BoxDecoration(
                 color: Colors.grey[600],

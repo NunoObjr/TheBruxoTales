@@ -17,6 +17,7 @@ class _CriarPageState extends State<CriarPage> {
 
   @override
   Widget build(BuildContext context) {
+    
     /*firestore() {
       Firestore.instance.collection('usuarios').document().setData({
         'email': textControllerEmail.text,
