@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../my_flutter_app_icons.dart';
 import 'dart:ui';
+import "./rankingPage.dart";
 
 class AppHome extends StatefulWidget {
   @override
@@ -17,7 +18,7 @@ class _AppHomeState extends State<AppHome> {
         backgroundColor: Colors.grey,
         body: SingleChildScrollView(
             child: Row(children: <Widget>[
-          navBar(),
+          navBar(context),
           Expanded(child:Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,16 +31,31 @@ class _AppHomeState extends State<AppHome> {
             feed(),
             ],
             )),
-            profileBar()
+            ProfileBar()
         ])
       ));
   }
 
+}
 
-Widget profileBar() {
-  var opacidade = 0.0;
-  var clique = false;
-  setState((){});
+
+class ProfileBar extends StatefulWidget {
+  @override
+  _ProfileBarState createState() => _ProfileBarState();
+  
+}
+
+class _ProfileBarState extends State<ProfileBar> {
+  var opacidade;
+  bool clique;
+   @override
+  void initState(){
+    opacidade = 0.0;
+    clique = false;
+    super.initState();
+  }
+ 
+  Widget build(BuildContext context) {
   return Container(
     child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -127,6 +143,8 @@ Widget profileBar() {
     ),
   );
 }
+}
+
 Widget feed() {
   return Column(
     children: <Widget>[
@@ -191,36 +209,6 @@ Widget feed() {
   );
 }
 
-Widget texto(texto, fontsize) {
-  return Text(
-    '$texto',
-    style: TextStyle(fontSize: fontsize, fontWeight: FontWeight.w600),
-  );
-}
-
-Widget bio() {
-  return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Padding(
-          padding: EdgeInsets.only(top: 30),
-          child: texto('CarpeadoBugado', 20.0),
-        ),
-        Padding(
-          padding: EdgeInsets.only(top: 10),
-          child: texto('Pontos: 570', 20.0),
-        ),
-        Padding(
-          padding: EdgeInsets.only(top: 10),
-          child: texto('Ranking global: 1', 20.0),
-        ),
-        Padding(
-          padding: EdgeInsets.only(top: 10),
-          child: texto('Ranking Brasil: 1', 20.0),
-        ),
-      ]);
-}
-
 Widget searchBar() {
   return TextField(
     decoration: InputDecoration(
@@ -233,7 +221,7 @@ Widget searchBar() {
   );
 }
 
-Widget navBar() {
+Widget navBar(BuildContext context) {
   return Container(
     child: Column(children: <Widget>[
       Padding(
@@ -298,9 +286,40 @@ Widget navBar() {
             padding: EdgeInsets.only(top: 17, right: 5),
             child: new RotatedBox(
                 quarterTurns: 1,
-                child: Text("Ranking", style: TextStyle(fontSize: 20)))),
+                child: OutlineButton(onPressed:((){
+              Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => RankingPage()));
+            }),
+                child:Text("Ranking", style: TextStyle(fontSize: 20))))),
       ),
     ]),
   );
 }
+Widget texto(texto, fontsize) {
+  return Text(
+    '$texto',
+    style: TextStyle(fontSize: fontsize, fontWeight: FontWeight.w600),
+  );
+}
+Widget bio() {
+  return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.only(top: 30),
+          child: texto('CarpeadoBugado', 20.0),
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: 10),
+          child: texto('Pontos: 570', 20.0),
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: 10),
+          child: texto('Ranking global: 1', 20.0),
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: 10),
+          child: texto('Ranking Brasil: 1', 20.0),
+        ),
+      ]);
 }
