@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-//import 'package:cloud_firestore/cloud_firestore.dart';
-//import '../main.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import '../screens/loginPage.dart';
 
 class CriarPage extends StatefulWidget {
   @override
@@ -17,67 +17,6 @@ class _CriarPageState extends State<CriarPage> {
 
   @override
   Widget build(BuildContext context) {
-    
-    /*firestore() {
-      Firestore.instance.collection('usuarios').document().setData({
-        'email': textControllerEmail.text,
-        'nome': textControllerUsername.text,
-        'senha': textControllerSenha.text
-      });
-    }*/
-
-    Widget buttonGo(BuildContext context) {
-      return Container(
-          decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black,
-                blurRadius: 5.0, //clarea
-                spreadRadius: 0.0, //expande
-                offset: Offset(
-                  0.0, //horizontal
-                  6.0, //vertical
-                ),
-              )
-            ],
-            borderRadius: BorderRadius.circular(50.0),
-          ),
-          child: SizedBox(
-              width: 100,
-              height: 90,
-              child: RaisedButton(
-                  child: Text('GO',
-                      style: TextStyle(
-                        fontSize: 45,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black,
-                        letterSpacing: 2.0,
-                        fontStyle: FontStyle.normal,
-                      )),
-                  onPressed: () {},
-                  /*if (_formKey.currentState.validate()) {
-                      firestore();
-                      showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(backgroundColor: Colors.green,
-                              title: Text('Cadastro Concluído!',),
-                              content: RaisedButton(
-                                onPressed: () {
-                                   Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Home()));
-                                },
-                                child: Text('Ok'),
-                              ),
-                            );
-                          });
-                    }
-                  },*/
-                  color: Color.fromARGB(255, 110, 159, 106),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(60.0)))));
-    }
-
     return Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
@@ -122,6 +61,71 @@ class _CriarPageState extends State<CriarPage> {
                       padding: EdgeInsets.only(top: 60.0, bottom: 5.0),
                       child: buttonCriar(context, "Voltar")),
                 ]))));
+  }
+
+  Widget buttonGo(BuildContext context) {
+    return Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black,
+              blurRadius: 5.0, //clarea
+              spreadRadius: 0.0, //expande
+              offset: Offset(
+                0.0, //horizontal
+                6.0, //vertical
+              ),
+            )
+          ],
+          borderRadius: BorderRadius.circular(50.0),
+        ),
+        child: SizedBox(
+            width: 100,
+            height: 90,
+            child: RaisedButton(
+                child: Text('GO',
+                    style: TextStyle(
+                      fontSize: 45,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black,
+                      letterSpacing: 2.0,
+                      fontStyle: FontStyle.normal,
+                    )),
+                onPressed: () {
+                  if (_formKey.currentState.validate()) {
+                    firestore();
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            backgroundColor: Colors.green,
+                            title: Text(
+                              'Cadastro Concluído!',
+                            ),
+                            content: RaisedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => LoginPage()));
+                              },
+                              child: Text('Ok'),
+                            ),
+                          );
+                        });
+                  }
+                },
+                color: Color.fromARGB(255, 110, 159, 106),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(60.0)))));
+  }
+
+  firestore() {
+    Firestore.instance.collection('Usuarios').document().setData({
+      'email': textControllerEmail.text,
+      'nome': textControllerUsername.text,
+      'senha': textControllerSenha.text
+    });
   }
 
   Widget input(controlador, hint, obscure) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:thebruxotales/screens/appHome.dart';
 
 class LoginPage extends StatefulWidget {
@@ -9,70 +10,67 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController textControllerUsername = TextEditingController();
   TextEditingController textControllerPassword = TextEditingController();
-
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.grey,
         body: SingleChildScrollView(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Divider(color: Colors.grey),
-            logo(),
-            Divider(color: Colors.grey, height: 40.0),
-            Text('Username', style: TextStyle(fontSize: 35.0)),
-            Divider(color: Colors.grey, height: 25.0),
-            Container(
-                alignment: Alignment.center,
-                width: 240,
-                height: 32,
-                child: input(
-                  'Username',
-                  textControllerUsername,
-                  false,
-                )),
-            Divider(color: Colors.grey, height: 25.0),
-            Text('Password', style: TextStyle(fontSize: 35)),
-            Divider(color: Colors.grey),
-            Container(
-                alignment: Alignment.center,
-                width: 240,
-                height: 32,
-                child: input(
-                  "Password",
-                  textControllerPassword,
-                  false,
-                )),
-            Divider(color: Colors.grey),
-            buttonGo(context),
-            Divider(color: Colors.grey),
-            buttonCriar(context, "Voltar"),
-          ],
-        )));
+            child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Divider(color: Colors.grey),
+                    logo(),
+                    Divider(color: Colors.grey, height: 40.0),
+                    Text('Username', style: TextStyle(fontSize: 35.0)),
+                    Divider(color: Colors.grey, height: 25.0),
+                    Container(
+                        alignment: Alignment.center,
+                        width: 300,
+                        child: input(
+                          'Username',
+                          textControllerUsername,
+                          false,
+                        )),
+                    Divider(color: Colors.grey, height: 25.0),
+                    Text('Password', style: TextStyle(fontSize: 35)),
+                    Divider(color: Colors.grey),
+                    Container(
+                        alignment: Alignment.center,
+                        width: 300,
+                        child: input(
+                          "Password",
+                          textControllerPassword,
+                          false,
+                        )),
+                    Divider(color: Colors.grey),
+                    buttonGo(context),
+                    Divider(color: Colors.grey),
+                    buttonCriar(context, "Voltar"),
+                  ],
+                ))));
   }
 
-
   Widget buttonGo(BuildContext context) {
-    return new 
-    Container(
+    return new Container(
         child: SizedBox(
-            height:70,
+            height: 70,
             child: RaisedButton(
-              color: Colors.green[300],
+              color: Colors.red,
               shape: CircleBorder(),
               onPressed: () {
-                //if (verificador(textControllerUsername.text, textControllerPassword.text)==true){
-                  Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => AppHome()));
-                //}
+                if (_formKey.currentState.validate()) {
+                  verificador(
+                      textControllerUsername.text, textControllerPassword.text);
+                }
               },
               child: Text('GO',
                   style: TextStyle(
                     fontSize: 45,
                     fontWeight: FontWeight.w400,
                     color: Colors.black,
-                    
                   )),
             )));
   }
@@ -98,8 +96,6 @@ class _LoginPageState extends State<LoginPage> {
                     borderRadius: BorderRadius.circular(15.0)))));
   }
 
-
-
   Widget logo() {
     return new Container(
       child: Padding(
@@ -118,11 +114,22 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget input(String hint, TextEditingController controlador, var obscure) {
     return TextFormField(
-      keyboardType: TextInputType.text,
+      onFieldSubmitted:(a){
+        verificador(textControllerUsername.text, textControllerPassword.text);
+      },
+      validator: (text) {
+        if (hint == 'Username') {
+          if (text.isEmpty) {
+            return 'Digite seu usuário';
+          }
+        } else if (hint == 'Password') {
+          if (text.isEmpty) {
+            return 'Digite sua senha';
+          }
+        }
+        return null;
+      },
       controller: controlador,
-      autofocus: false,
-      textAlign: TextAlign.start,
-      maxLines: 1,
       obscureText: obscure,
       style: TextStyle(
         fontSize: 20,
@@ -130,23 +137,26 @@ class _LoginPageState extends State<LoginPage> {
         height: 0.9,
       ),
       decoration: InputDecoration(
-        border: InputBorder.none,
-        contentPadding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
         hintText: hint,
-        hintStyle: TextStyle(height: 0),
         filled: true,
         fillColor: Colors.white,
       ),
     );
   }
 
-  verificador(String username, password) {
-    if (username == 'admin' && password == 'admin') {
-      print(true);
-      return true;
-    } else {
-      print(false);
-      return false;
-    }
+  verificador(usuario, senha) async {
+    QuerySnapshot querySnapshot =
+        await Firestore.instance.collection('Usuarios').getDocuments();
+   QuerySnapshot queryContos =  await Firestore.instance.collection('Usuarios').document(usuario).collection('Conto').getDocuments();
+    querySnapshot.documents.forEach((d) {
+      if (d.documentID == usuario && d.data['password'] == senha) {
+        final contos = queryContos.documents.length;
+        return Navigator.push(
+            context, MaterialPageRoute(builder: (context) => AppHome(usuario,contos)));
+      } else {
+        return null;
+      }
+    });
   }
 }
