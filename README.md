@@ -1,16 +1,24 @@
-# thebruxotales
+# The Bruxo Tales
 
-A new Flutter project.
+Projeto **Flutter** com o nome *The Bruxo Tales*.
 
-## Getting Started
+> **Status:** esqueleto inicial. O repositório contém somente a estrutura gerada pelo `flutter create` para Android e iOS (o `lib/main.dart` está vazio) e arquivos de configuração do IDE. Ainda não há funcionalidades implementadas.
 
-This project is a starting point for a Flutter application.
+## Stack
 
-A few resources to get you started if this is your first Flutter project:
+Flutter · Dart (`>=2.1.0 <3.0.0`)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Como executar
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash
+flutter pub get
+flutter run
+```
+
+Use uma versão do Flutter compatível com o SDK antigo do Dart (por exemplo via FVM).
+
+## Próximos passos sugeridos
+
+- [ ] Definir o conceito e o escopo do projeto neste README
+- [ ] Remover do versionamento os arquivos de IDE (`.packages`, `workspace.xml`, `libraries/`, `runConfigurations/`) e incluí-los no `.gitignore`
+- [ ] Implementar o app a partir de `lib/main.dart`
